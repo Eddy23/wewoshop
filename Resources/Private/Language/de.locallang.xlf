@@ -1,0 +1,176 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<xliff xmlns="urn:oasis:names:tc:xliff:document:1.2 xliff-core-1.2-strict.xsd" version="1.2">
+    <file source-language="en" target-language="de" datatype="plaintext" original="messages" date="2013-04-11T16:48:52Z" product-name="wewoshop">
+        <header/>
+        <body>
+            <trans-unit id="tx_wewoshop_domain_model_category">
+                <source>Category</source>
+                <target>Kategorie</target>
+            </trans-unit>
+            <trans-unit id="tx_wewoshop_domain_model_category.title">
+                <source>Name of the category</source>
+                <target>Kategoriename</target>
+            </trans-unit>
+            <trans-unit id="tx_wewoshop_domain_model_product">
+                <source>Product</source>
+                <target>Produkte</target>
+            </trans-unit>
+            <trans-unit id="tx_wewoshop_domain_model_product.title">
+                <source>Name of the product</source>
+                <target>Produkt</target>
+            </trans-unit>
+            <trans-unit id="tx_wewoshop_domain_model_product.size">
+                <source>Size of the product</source>
+                <target>Grösse</target>
+            </trans-unit>
+            <trans-unit id="tx_wewoshop_domain_model_product.weight">
+                <source>Weight of the product</source>
+                <target>Gewicht</target>
+            </trans-unit>
+            <trans-unit id="tx_wewoshop_domain_model_product.color">
+                <source>Color of the product</source>
+                <target>Farbe</target>
+            </trans-unit>
+            <trans-unit id="tx_wewoshop_domain_model_product.categories">
+                <source>Category of the product</source>
+                <target>Produktkategorie</target>
+            </trans-unit>
+            <trans-unit id="tx_wewoshop_domain_model_product.teaser_text">
+                <source>Short Teaser of the product</source>
+                <target>Teaser</target>
+            </trans-unit>
+            <trans-unit id="tx_wewoshop_domain_model_product.description_text">
+                <source>Description of the product</source>
+                <target>Beschreibung</target>
+            </trans-unit>
+            <trans-unit id="tx_wewoshop_domain_model_product.price">
+                <source>Price of the product</source>
+                <target>Stückpreis</target>
+            </trans-unit>
+            <trans-unit id="tx_wewoshop_domain_model_product.product_img_big">
+                <source>Big Image of the product</source>
+                <target>Produktbild</target>
+            </trans-unit>
+            <trans-unit id="tx_wewoshop_domain_model_product.product_img_small">
+                <source>Thumbnail of the product</source>
+                <target>Vorschaubild</target>
+            </trans-unit>
+            <trans-unit id="tx_wewoshop_domain_model_frontenduser.first_name">
+                <source>First name</source>
+                <target>Vorname</target>
+            </trans-unit>
+            <trans-unit id="tx_wewoshop_domain_model_frontenduser.last_name">
+                <source>Last name</source>
+                <target>Nachname</target>
+            </trans-unit>
+            <trans-unit id="tx_wewoshop_domain_model_frontenduser.address">
+                <source>Street and Streetnumber</source>
+                <target>Strasse und Hausnummer</target>
+            </trans-unit>
+            <trans-unit id="tx_wewoshop_domain_model_frontenduser.zip">
+                <source>Zip</source>
+                <target>Postleitzahl</target>
+            </trans-unit>
+            <trans-unit id="tx_wewoshop_domain_model_frontenduser.city">
+                <source>City</source>
+                <target>Stadt</target>
+            </trans-unit>
+            <trans-unit id="tx_wewoshop_domain_model_frontenduser.email">
+                <source>Email</source>
+                <target>E-Mail-Adresse</target>
+            </trans-unit>
+            <trans-unit id="tx_wewoshop_domain_model_frontenduser.confirmationPassword">
+                <source>confirm Password</source>
+                <target>Password bestätigen</target>
+            </trans-unit>
+            <trans-unit id="tx_wewoshop_domain_model_frontenduser.password">
+                <source>Password</source>
+                <target>Passwort</target>
+            </trans-unit>
+            <trans-unit id="tx_wewoshop_domain_model_payment.account">
+                <source>Account</source>
+                <target>Rechnung</target>
+            </trans-unit>
+            <trans-unit id="tx_wewoshop_domain_model_payment.debit">
+                <source>Debit</source>
+                <target>Lastschrift</target>
+            </trans-unit>
+            <trans-unit id="tx_wewoshop_domain_model_payment.iban">
+                <source>IBAN</source>
+                <target>IBAN</target>
+            </trans-unit>
+            <trans-unit id="tx_wewoshop_domain_model_payment.bic">
+                <source>BIC</source>
+                <target>BIC</target>
+            </trans-unit>
+            <trans-unit id="tx_wewoshop_domain_model_payment.prePayment">
+                <source>Prepayment</source>
+                <target>Vorkasse</target>
+            </trans-unit>
+            <trans-unit id="registerNew">
+                <source>Register</source>
+                <target>Registrieren</target>
+            </trans-unit>
+            <trans-unit id="registerExist">
+                <source>Login</source>
+                <target>Login</target>
+            </trans-unit>
+            <trans-unit id="newCustomer">
+                <source>I am a new Customer</source>
+                <target>Ich bin Neukunde</target>
+            </trans-unit>
+            <trans-unit id="existingCustomer">
+                <source>I am an existing Customer</source>
+                <target>Ich bin bereits Kunde</target>
+            </trans-unit>
+            <trans-unit id="acceptTerms">
+                <source>I agree to the Terms and Conditions and the Privacy Policy</source>
+                <target>Ja, ich stimme den AGB und den Datenschutzbestimmungen zu</target>
+            </trans-unit>
+            <trans-unit id="positionQuantity">
+                <source>Quantity of the position.</source>
+                <target>Fehler bei der Eingabe der Produktanzahl:</target>
+            </trans-unit>
+            <trans-unit id="note">
+                <source>Wrong input in the form fields:</source>
+                <target>Fehler bei der Eingabe der Formularfelder:</target>
+            </trans-unit>
+            <trans-unit id="formLoginFailure">
+                <source>Wrong input in the form fields</source>
+                <target>Die eingegebenen Daten waren nicht korrekt</target>
+            </trans-unit>
+            <trans-unit id="orderAlreadyRealized">
+                <source>The order is already realized.</source>
+                <target>Die Bestellung wurde bereits durchgeführt. </target>
+            </trans-unit>
+            <trans-unit id="toSummary">
+                <source>go to summary</source>
+                <target>weiter zur Übersicht</target>
+            </trans-unit>
+            <trans-unit id="buyNow">
+                <source>buy now</source>
+                <target>jetzt kaufen</target>
+            </trans-unit>
+            <trans-unit id="error.1332933658">
+                <source></source>
+                <target>Der eingegebene Wert ist keine Ganzzahl (1332933658)</target>
+            </trans-unit>
+            <trans-unit id="error.1221560494">
+                <source></source>
+                <target>Der eingegebene Wert muss eine Ganzzahl grösser als Null sein (1221560494)</target>
+            </trans-unit>
+            <trans-unit id="error.1221560718">
+                <source></source>
+                <target>Es wurden nicht alle benötigten Felder ausgefüllt (1221560718)</target>
+            </trans-unit>
+            <trans-unit id="error.1221559976">
+                <source></source>
+                <target>Die E-Mailadresse ist nicht korrekt (1221559976)</target>
+            </trans-unit>
+            <trans-unit id="error.1231231231">
+                <source>Please type an integer value, greater than zero</source>
+                <target>Bitte einen ganzzahligen Wert eingeben, der größer Null ist (1231231231)</target>
+            </trans-unit>
+        </body>
+    </file>
+</xliff>

@@ -1,0 +1,30 @@
+<div xmlns:f="http://typo3.org/ns/fluid/ViewHelpers">
+<f:layout name="Default"/>
+
+This Template is responsible for displaying a single view for a domain object
+
+If you modify this template, do not forget to change the overwrite settings
+in /Configuration/ExtensionBuilder/settings.yaml:
+  Resources:
+    Private:
+      Templates:
+        Show.html: keep
+
+Otherwise your changes will be overwritten the next time you save the extension in the extension builder
+
+<f:section name="main">
+    <h1>Produktansicht</h1>
+
+    <f:flashMessages />
+
+    <f:render partial="Product/Properties" arguments="{product:product}" />
+    <f:link.action action="storeObjectIntoSession" arguments="{product:product}">In den Warenkorb</f:link.action><br />
+    <f:link.action action="list">Zurück zur Übersicht</f:link.action><br />
+    <f:if condition="{0: changeShowView} == {0: 'TRUE'}">
+        <f:link.action action="sortlist" arguments="{productCategory : product.categories}">Zurück zur gefilterten Liste (Kategorie)</f:link.action><br />
+    </f:if>
+    <f:if condition="{0: changeShowViewSearch} == {0: 'TRUE'}">
+        <f:link.action action="search" arguments="{searchBox : queryString}">Zurück zur gefilterten Liste (Suchfeld)</f:link.action><br />
+    </f:if>
+</f:section>
+</div>

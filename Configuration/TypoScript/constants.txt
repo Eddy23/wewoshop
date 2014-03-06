@@ -1,0 +1,38 @@
+
+plugin.tx_wewoshop {
+	view {
+		# cat=plugin.tx_wewoshop/file; type=string; label=Path to template root (FE)
+		templateRootPath = EXT:wewoshop/Resources/Private/Templates/
+		# cat=plugin.tx_wewoshop/file; type=string; label=Path to template partials (FE)
+		partialRootPath = EXT:wewoshop/Resources/Private/Partials/
+		# cat=plugin.tx_wewoshop/file; type=string; label=Path to template layouts (FE)
+		layoutRootPath = EXT:wewoshop/Resources/Private/Layouts/
+	}
+	persistence {
+		# cat=plugin.tx_wewoshop//a; type=string; label=Default storage PID
+		storagePid =
+	}
+}
+
+## EXTENSION BUILDER DEFAULTS END TOKEN - Everything BEFORE this line is overwritten with the defaults of the extension builder
+## Define custom categories
+#customsubcategory = pagesettings= E-Mail
+
+plugin.tx_wewoshop {
+    settings {
+        # cat=plugin.tx_wewoshop//pagesettings; type=string; label=E-Mail Shop: E-Mail Absenderadresse des Shops für das Bestätigungsmail
+        emailSender = admin@testshop.de
+        # cat=plugin.tx_wewoshop//pagesettings; type=string; label=E-Mail Auftragseingang: E-Mailadresse des Shops für die Auftragsbearbeitung (= Kopie des Bestätigungsmails an den Kunden)
+        emailIncomingOrders = auftragsbearbeitung@testshop.de
+        # cat=plugin.tx_wewoshop//pagesettings; type=string; label=E-Mail Betreffzeile - Kunde: Betreffzeile in der Bestätigungsmail an den Kunden
+        emailSubject = Ihre Bestellung beim Testshop
+        # cat=plugin.tx_wewoshop//pagesettings; type=string; label=E-Mail Betreffzeile - Shop: Betreffzeile in der Auftragseingangsmail an den Shop
+        emailSubjectShop = Neue Bestellung beim Testshop
+        # cat=plugin.tx_wewoshop//pagesettings; type=integer; label=UID der FE-Usergroup
+        feUserGroupUid = 0
+        # cat=plugin.tx_wewoshop//pagesettings; type=integer; label=UID der FE-User: Storagefolder der FE-User (=PID)
+        feUserPid = 1
+         # cat=plugin.tx_wewoshop//pagesettings; type=integer; label=ID der AGB-Seite
+         agbId = 1
+    }
+}

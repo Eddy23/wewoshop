@@ -1,0 +1,44 @@
+<div xmlns:f="http://typo3.org/ns/fluid/ViewHelpers">
+<f:layout name="Default" />
+
+This Template is responsible for creating a table of domain objects.
+
+If you modify this template, do not forget to change the overwrite settings
+in /Configuration/ExtensionBuilder/settings.yaml:
+  Resources:
+    Private:
+      Templates:
+        ShowPaymentForm.html: keep
+
+Otherwise your changes will be overwritten the next time you save the extension in the extension builder
+
+<f:section name="main">
+    <h1>Zahlungsart wählen:</h1>
+    <h2>{testausgabe}</h2>
+
+    <f:form action="list" controller="Orders" method="post">
+        <f:form.radio name="payment" value="0"/>Lastschrift<br/>
+            <fieldset>
+                <p>
+                    <label for="accountNr"><f:translate key="tx_wewoshop_domain_model_frontenduser.accountNr"/></label>
+                    <f:form.textfield id="accountNr" name="accountNr" property="accountNr" type="text" value=""/>
+                </p>
+                <p>
+                    <label for="bankNr"><f:translate key="tx_wewoshop_domain_model_frontenduser.bankNr"/></label>
+                    <f:form.textfield id="bankNr" name="bankNr" property="bankNr" type="text" value=""/>
+                </p>
+                <p>
+                    <label for="bankName"><f:translate key="tx_wewoshop_domain_model_frontenduser.bankName"/></label>
+                    <f:form.textfield id="bankName" name="bankName" property="bankName" type="text" value=""/>
+                </p>
+            </fieldset>
+        <f:form.radio name="payment" value="1"/>Rechnung<br/><br/>
+        <button id="toSummary" type="submit">
+            <f:translate key="toSummary"/>
+        </button>
+    </f:form>
+    <br />
+    <f:link.action class="basketbacktolist" controller="Product" action="restoreObjectFromSession">Zurück zur Warenkorbübersicht</f:link.action>
+
+</f:section>
+</div>

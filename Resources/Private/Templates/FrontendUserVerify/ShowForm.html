@@ -1,0 +1,101 @@
+<div xmlns:f="http://typo3.org/ns/fluid/ViewHelpers">
+    <f:layout name="Default"/>
+
+    This Template is responsible for creating a table of domain objects.
+
+    If you modify this template, do not forget to change the overwrite settings
+    in /Configuration/ExtensionBuilder/settings.yaml:
+    Resources:
+    Private:
+    Templates:
+    ShowForm.html: keep
+
+    Otherwise your changes will be overwritten the next time you save the extension in the extension builder
+
+    <f:section name="main">
+        <h1>User Login - User Registration</h1>
+
+        <f:render partial="formErrorsVerify" arguments="{object}"/>
+        <f:render partial="formLoginFailure" arguments="{_all}"/>
+
+        <div id="registrationExist">
+            <h2>
+                <f:translate key="existingCustomer"/>
+            </h2>
+
+            <f:form id="RegisterUserFormExist" action="verifyFeUser" method="post" object="{frontendUserVerifies}" name="frontendUserVerifies" >
+                <fieldset>
+                    <p>
+                        <label for="emailExist"><f:translate key="tx_wewoshop_domain_model_frontenduser.email"/></label>
+                        <f:form.textfield id="emailExist" property="email" type="email" class="text"/>
+                    </p>
+                    <p>
+                        <label for="passwordExist"><f:translate key="tx_wewoshop_domain_model_frontenduser.password"/></label>
+                        <f:form.textfield id="passwordExist" property="password" type="password" class="text" />
+                    </p>
+                    <p>
+                        <button id="registerExist" type="submit">
+                            <f:translate key="registerExist"/>
+                        </button>
+                    </p>
+                </fieldset>
+            </f:form>
+        </div>
+
+        <div id="registrationNew">
+            <h2>
+                <f:translate key="newCustomer"/>
+            </h2>
+
+            <f:form id="RegisterUserFormNew" action="create" controller="FrontendUser" method="post" object="{frontendUser}" name="frontendUser">
+                <fieldset>
+                    <p>
+                        <label for="firstNameNew"><f:translate key="tx_wewoshop_domain_model_frontenduser.first_name"/></label>
+                        <f:form.textfield id="firstNameNew" property="firstName" type="text" class="text"/>
+                    </p>
+                    <p>
+                        <label for="lastNameNew"><f:translate key="tx_wewoshop_domain_model_frontenduser.last_name"/></label>
+                        <f:form.textfield id="lastNameNew" property="lastName" type="text" class="text"/>
+                    </p>
+                    <p>
+                        <label for="addressNew"><f:translate key="tx_wewoshop_domain_model_frontenduser.address"/></label>
+                        <f:form.textfield id="addressNew" property="address" type="text" class="text"/>
+                    </p>
+                    <p>
+                        <label for="zipNew"><f:translate key="tx_wewoshop_domain_model_frontenduser.zip"/></label>
+                        <f:form.textfield id="zipNew" property="zip" type="text" class="text"/>
+                    </p>
+                    <p>
+                        <label for="cityNew"><f:translate key="tx_wewoshop_domain_model_frontenduser.city"/></label>
+                        <f:form.textfield id="cityNew" property="city" type="text" class="text"/>
+                    </p>
+                    <p>
+                        <label for="emailNew"><f:translate key="tx_wewoshop_domain_model_frontenduser.email"/></label>
+                        <f:form.textfield id="emailNew" property="email" type="email" class="text"/>
+                    </p>
+                    <p>
+                        <label for="passwordNew"><f:translate key="tx_wewoshop_domain_model_frontenduser.password"/></label>
+                        <f:form.textfield id="passwordNew" property="password" value="" class="text" type="password"/>
+                    </p>
+                    <p>
+                        <label for="confirmationPasswordNew"><f:translate key="tx_wewoshop_domain_model_frontenduser.confirmationPassword"/></label>
+                        <f:form.textfield id="confirmationPasswordNew" property="confirmationPassword" value="" class="text" type="password"/>
+                    </p>
+                    <p>
+                        <f:form.checkbox property="acceptTerms" value="1" />
+                        <f:link.page pageUid="{settings.agbId}"><label for="acceptTermsNew"><f:translate key="acceptTerms"/></label></f:link.page>
+                    </p>
+                        <f:form.hidden property="usergroup" value="{settings.feUserGroupUid}" />
+                        <f:form.hidden property="pid" value="{settings.feUserPid}"/>
+                        <f:form.hidden property="username" value="{dummyUserName}"/>
+                    <p>
+                        <button id="registerNew" type="submit">
+                            <f:translate key="registerNew"/>
+                        </button>
+                    </p>
+                </fieldset>
+            </f:form>
+        </div>
+        <f:link.action class="basketbacktolist" controller="Product" action="restoreObjectFromSession">Zurück zur Warenkorbübersicht </f:link.action>
+    </f:section>
+</div>

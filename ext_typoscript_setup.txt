@@ -1,0 +1,36 @@
+config.tx_extbase{
+    persistence{
+       classes{
+            Wewo\Wewoshop\Domain\Model\FrontendUser {
+                mapping {
+                    tableName = fe_users
+                    recordType = Tx_Extbase_Domain_Model_FrontendUser
+    				columns {
+	    				tx_wewoshop_acceptterms.mapOnProperty = acceptTerms
+	    				tx_wewoshop_accountNr.mapOnProperty = accountNr
+	    				tx_wewoshop_bankNr.mapOnProperty = bankNr
+	    				tx_wewoshop_bankName.mapOnProperty = bankName
+		    		}
+                }
+            }
+            Wewo\Wewoshop\Domain\Model\FrontendUserVerify {
+                mapping {
+                    tableName = fe_users
+                    recordType = Tx_Extbase_Domain_Model_FrontendUser
+                 }
+             }
+            TYPO3\CMS\Extbase\Domain\Model\FrontendUserGroup {
+                mapping {
+                    tableName = fe_groups
+                    recordType = Tx_Extbase_Domain_Model_FrontendUserGroup
+                }
+            }
+    	}
+    }
+}
+
+
+# Ursprüngliches Verhalten wieder verwenden durch Zurücksetzen auf 0
+# -> siehe auch: http://forge.typo3.org/projects/typo3v4-mvc/wiki/PropertyMapper_rework
+# Mit Wert = 1 werden die Argumente an die Controller als array übergeben
+# config.tx_extbase.features.rewrittenPropertyMapper = 1

@@ -1,0 +1,51 @@
+<f:layout name="Default"/>
+
+This template displays a NEW form for the current domain object.
+
+If you modify this template, do not forget to change the overwrite settings
+in /Configuration/ExtensionBuilder/settings.yaml:
+Resources:
+Private:
+Templates:
+ShowPaymentForm.html: keep
+
+Otherwise your changes will be overwritten the next time you save the extension in the extension builder
+
+<f:section name="main">
+    <h1>Bezahlart auswählen</h1>
+
+    <f:flashMessages/>
+
+    <f:form action="paymentMethodToSession" controller="Orders" enctype="multipart/form-data" name="orders" object="{orders}" arguments="{frontendUser : frontendUser}">
+        <f:form.radio name="paymentMethods" value="1" checked="checked"/><f:translate key="tx_wewoshop_domain_model_payment.debit"/>
+        <br/>
+        <fieldset>
+            <p>
+                <label for="accountNr"><f:translate key="tx_wewoshop_domain_model_payment.debitAccountNumber"/></label>
+                <f:form.textfield id="accountNr" name="accountNr" property="debitAccountNumber" type="text" value=""/>
+            </p>
+            <p>
+                <label for="bankNr"><f:translate key="tx_wewoshop_domain_model_payment.debitBankCode"/></label>
+                <f:form.textfield id="bankNr" name="bankNr" property="debitBankCode" type="text" value=""/>
+            </p>
+            <p>
+                <label for="bankName"><f:translate key="tx_wewoshop_domain_model_payment.debitBankName"/></label>
+                <f:form.textfield id="bankName" name="bankName" property="debitBankName" type="text" value=""/>
+            </p>
+        </fieldset>
+        <br/>
+        <f:form.radio name="paymentMethods" value="2"/><f:translate key="tx_wewoshop_domain_model_payment.account"/>
+        <br/><br/>
+        <f:form.radio name="paymentMethods" value="3"/><f:translate key="tx_wewoshop_domain_model_payment.prePayment"/>
+        <br/><br/>
+
+
+        <!--    <f:render partial="Payment/FormFields" arguments="{newPayment : newPayment}" /> -->
+        <!--    <f:render partial="Payment/DeliveryAddress" arguments="{deliveryAddress : deliveryAddress, frontendUser : frontendUser}" /> -->
+        <input type="hidden" name="frontendUser[uid]" value="{frontendUser.uid}"/>
+        <!--    <input type="hidden" name="frontendUserVerify" value="{feUserObject}"/>  -->
+        <button id="toSummary" type="submit">
+            <f:translate key="toSummary"/>
+        </button>
+    </f:form>
+</f:section>

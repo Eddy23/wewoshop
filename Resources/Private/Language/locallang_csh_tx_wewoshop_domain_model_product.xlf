@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<xliff version="1.0">
+	<file source-language="en" datatype="plaintext" original="messages" date="2014-01-23T17:24:27Z" product-name="wewoshop">
+		<header/>
+		<body>
+			
+            
+			<trans-unit id="product_title.description">
+				<source>Name of the product</source>
+			</trans-unit>
+			<trans-unit id="size.description">
+				<source>Size of the product</source>
+			</trans-unit>
+			<trans-unit id="weight.description">
+				<source>Weight of the product</source>
+			</trans-unit>
+			<trans-unit id="color.description">
+				<source>Color of the product</source>
+			</trans-unit>
+			<trans-unit id="teaser_text.description">
+				<source>Short Teaser of the product</source>
+			</trans-unit>
+			<trans-unit id="description_text.description">
+				<source>Description of the product</source>
+			</trans-unit>
+			<trans-unit id="price.description">
+				<source>Price of the product</source>
+			</trans-unit>
+			<trans-unit id="product_img_big.description">
+				<source>Big Image of the product</source>
+			</trans-unit>
+			<trans-unit id="product_img_small.description">
+				<source>Thumbnail of the product</source>
+			</trans-unit>
+			<trans-unit id="categories.description">
+				<source>Category of the product</source>
+			</trans-unit>
+		</body>
+	</file>
+</xliff>

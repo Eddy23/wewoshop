@@ -1,0 +1,144 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<xliff version="1.0">
+	<file source-language="en" datatype="plaintext" original="messages" date="2014-01-23T17:24:27Z" product-name="wewoshop">
+		<header/>
+		<body>
+			
+			
+			<trans-unit id="tx_wewoshop_domain_model_category">
+				<source>Category</source>
+			</trans-unit>
+			<trans-unit id="tx_wewoshop_domain_model_category.title">
+				<source>Title</source>
+			</trans-unit>
+			
+			
+			<trans-unit id="tx_wewoshop_domain_model_product">
+				<source>Product</source>
+			</trans-unit>
+			<trans-unit id="tx_wewoshop_domain_model_product.product_title">
+				<source>Product Title</source>
+			</trans-unit>
+			<trans-unit id="tx_wewoshop_domain_model_product.size">
+				<source>Size</source>
+			</trans-unit>
+			<trans-unit id="tx_wewoshop_domain_model_product.weight">
+				<source>Weight</source>
+			</trans-unit>
+			<trans-unit id="tx_wewoshop_domain_model_product.color">
+				<source>Color</source>
+			</trans-unit>
+			<trans-unit id="tx_wewoshop_domain_model_product.teaser_text">
+				<source>Teaser Text</source>
+			</trans-unit>
+			<trans-unit id="tx_wewoshop_domain_model_product.description_text">
+				<source>Description Text</source>
+			</trans-unit>
+			<trans-unit id="tx_wewoshop_domain_model_product.price">
+				<source>Price</source>
+			</trans-unit>
+			<trans-unit id="tx_wewoshop_domain_model_product.product_img_big">
+				<source>Product Img Big</source>
+			</trans-unit>
+			<trans-unit id="tx_wewoshop_domain_model_product.product_img_small">
+				<source>Product Img Small</source>
+			</trans-unit>
+			<trans-unit id="tx_wewoshop_domain_model_product.categories">
+				<source>Categories</source>
+			</trans-unit>
+			
+			
+			<trans-unit id="tx_wewoshop_domain_model_frontenduser">
+				<source>Frontend User</source>
+			</trans-unit>
+			<trans-unit id="tx_wewoshop_domain_model_frontenduser.email">
+				<source>Email</source>
+			</trans-unit>
+			<trans-unit id="tx_wewoshop_domain_model_frontenduser.password">
+				<source>Password</source>
+			</trans-unit>
+			<trans-unit id="tx_wewoshop_domain_model_frontenduser.delivery_addresses">
+				<source>Delivery Addresses</source>
+			</trans-unit>
+			
+			
+			<trans-unit id="tx_wewoshop_domain_model_frontenduserverify">
+				<source>Frontend User Verify</source>
+			</trans-unit>
+			
+			
+			<trans-unit id="tx_wewoshop_domain_model_orders">
+				<source>Orders</source>
+			</trans-unit>
+			<trans-unit id="tx_wewoshop_domain_model_orders.order_nr">
+				<source>Order Nr</source>
+			</trans-unit>
+			<trans-unit id="tx_wewoshop_domain_model_orders.order_position_nr">
+				<source>Order Position Nr</source>
+			</trans-unit>
+			<trans-unit id="tx_wewoshop_domain_model_orders.order_position_volume">
+				<source>Order Position Volume</source>
+			</trans-unit>
+			<trans-unit id="tx_wewoshop_domain_model_orders.product_uid">
+				<source>Product Uid</source>
+			</trans-unit>
+			<trans-unit id="tx_wewoshop_domain_model_orders.fe_user_uid">
+				<source>Fe User Uid</source>
+			</trans-unit>
+			<trans-unit id="tx_wewoshop_domain_model_orders.payment_method">
+				<source>Payment Method</source>
+			</trans-unit>
+			
+			
+			<trans-unit id="tx_wewoshop_domain_model_payment">
+				<source>Payment</source>
+			</trans-unit>
+			<trans-unit id="tx_wewoshop_domain_model_payment.payment_title">
+				<source>Payment Title</source>
+			</trans-unit>
+			<trans-unit id="tx_wewoshop_domain_model_payment.payment_method_id">
+				<source>Payment Method Id</source>
+			</trans-unit>
+			<trans-unit id="tx_wewoshop_domain_model_payment.debit_account_number">
+				<source>Debit Account Number</source>
+			</trans-unit>
+			<trans-unit id="tx_wewoshop_domain_model_payment.debit_bank_code">
+				<source>Debit Bank Code</source>
+			</trans-unit>
+			<trans-unit id="tx_wewoshop_domain_model_payment.debit_bank_name">
+				<source>Debit Bank Name</source>
+			</trans-unit>
+			<trans-unit id="tx_wewoshop_domain_model_payment.iban">
+				<source>Iban</source>
+			</trans-unit>
+			<trans-unit id="tx_wewoshop_domain_model_payment.bic">
+				<source>Bic</source>
+			</trans-unit>
+			<trans-unit id="tx_wewoshop_domain_model_payment.orders">
+				<source>Orders</source>
+			</trans-unit>
+			
+			
+			<trans-unit id="tx_wewoshop_domain_model_deliveryaddress">
+				<source>Delivery Address</source>
+			</trans-unit>
+			<trans-unit id="tx_wewoshop_domain_model_deliveryaddress.first_name_delivery">
+				<source>First Name Delivery</source>
+			</trans-unit>
+			<trans-unit id="tx_wewoshop_domain_model_deliveryaddress.last_name_delivery">
+				<source>Last Name Delivery</source>
+			</trans-unit>
+			<trans-unit id="tx_wewoshop_domain_model_deliveryaddress.address_delivery">
+				<source>Address Delivery</source>
+			</trans-unit>
+			<trans-unit id="tx_wewoshop_domain_model_deliveryaddress.zip_delivery">
+				<source>Zip Delivery</source>
+			</trans-unit>
+			<trans-unit id="tx_wewoshop_domain_model_deliveryaddress.city_delivery">
+				<source>City Delivery</source>
+			</trans-unit>
+			
+			
+		</body>
+	</file>
+</xliff>

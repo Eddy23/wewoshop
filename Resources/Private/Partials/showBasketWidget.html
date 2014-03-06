@@ -1,0 +1,7 @@
+<h3>Ihr Warenkorb</h3>
+<p>Gesamtzahl Produkte: {basketQuantity} </p>
+<p>Gesamtwert: <f:format.currency> {basketValue}</f:format.currency> EUR </p>
+<f:if condition="{0: basketLinks} == {0: 'TRUE'}">
+    <f:link.action action="restoreObjectFromSession">Warenkorb anzeigen</f:link.action><br/>
+    <f:link.action action="deleteSession">Warenkorb löschen</f:link.action><br/>
+</f:if>

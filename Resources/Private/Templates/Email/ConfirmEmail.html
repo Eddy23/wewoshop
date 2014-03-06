@@ -1,0 +1,48 @@
+<h4>Sehr geehrte(r) {userName},</h4>
+
+<p>vielen Dank für Ihre Bestellung bei Testshop.de<br/>
+    Ihre Bestellung vom {orderDate} mit der Bestellnummer <b>{orderNumber}</b> enthält folgende Positionen:</p>
+
+<table>
+    <tr>
+        <th>Menge</th>
+        <th>Artikel-Nr.</th>
+        <th>Beschreibung</th>
+        <th>Stückpreis</th>
+        <th>Gesamtpreis</th>
+    </tr>
+
+    <f:for each="{sessionObjects}" as="sessionObject">
+        <tr>
+            <td>{sessionObject.Anzahl}</td>
+            <td>{sessionObject.Produktuid}</td>
+            <td>{sessionObject.Produktname}</td>
+            <td>
+                <f:format.currency currencySign="€" decimalSeparator="," thousandsSeparator=".">{sessionObject.Preis}</f:format.currency>
+            </td>
+            <td>
+                <f:format.currency currencySign="€" decimalSeparator="," thousandsSeparator=".">{sessionObject.Positionsbetrag}</f:format.currency>
+            </td>
+        </tr>
+    </f:for>
+    <tr>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td><b>Gesamtsumme:</b></td>
+        <td>
+            <b><f:format.currency currencySign="€" decimalSeparator="," thousandsSeparator=".">{totalAmount}</f:format.currency></b>
+        </td>
+    </tr>
+</table>
+
+<f:if condition="{sessionObjects.0.Bezahlmethode} == 1">
+    <p>Gewünschte Bezahlart: Lastschrift</p>
+</f:if>
+<f:if condition="{sessionObjects.0.Bezahlmethode} == 2">
+    <p>Gewünschte Bezahlart: Rechnung</p>
+</f:if>
+<f:if condition="{sessionObjects.0.Bezahlmethode} == 3">
+    <p>Gewünschte Bezahlart: Vorkasse</p>
+</f:if>
+<h4>Viele Grüße und bis zum nächsten Mal - Ihr Testshop</h4>

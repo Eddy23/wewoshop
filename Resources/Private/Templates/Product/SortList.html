@@ -1,0 +1,64 @@
+<div xmlns:f="http://typo3.org/ns/fluid/ViewHelpers">
+<f:layout name="Default" />
+
+This Template is responsible for creating a table of domain objects.
+
+If you modify this template, do not forget to change the overwrite settings
+in /Configuration/ExtensionBuilder/settings.yaml:
+  Resources:
+    Private:
+      Templates:
+        List.html: keep
+
+Otherwise your changes will be overwritten the next time you save the extension in the extension builder
+
+<f:section name="main">
+    <h1>Produkte der gewünschten: {productsCatId.0.categories.title}</h1>
+
+
+<f:flashMessages />
+
+<table  class="tx_wewoshop" >
+	<tr>
+		<th><f:translate key="tx_wewoshop_domain_model_product.title" /></th>
+        <th><f:translate key="tx_wewoshop_domain_model_product.categories" /></th>
+        <th><f:translate key="tx_wewoshop_domain_model_product.size" /></th>
+		<th><f:translate key="tx_wewoshop_domain_model_product.color" /></th>
+        <th><f:translate key="tx_wewoshop_domain_model_product.product_img_small" /></th>
+	</tr>
+
+	<f:for each="{productsCatId}" as="product">
+		<tr>
+			<td><f:link.action action="show" arguments="{product : product, changeShowView:'changeShowView'}"> {product.productTitle}</f:link.action></td>
+            <td>{product.categories.title}</td>
+            <td>{product.size}</td>
+			<td>{product.color}</td>
+            <td><f:link.action action="show" arguments="{product : product, changeShowView:'changeShowView'}">
+                <f:image src="uploads/tx_wewoshop/{product.productImgSmall}" alt="Testbildklein" maxHeight="100" />
+            </f:link.action></td>
+		</tr>
+	</f:for>
+</table>
+<f:link.action action="list">Zurück zur Übersicht</f:link.action><br />
+</f:section>
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

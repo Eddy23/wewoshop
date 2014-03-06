@@ -1,0 +1,25 @@
+<f:form.validationResults for="{object}">
+    <!-- ######################################################################################## -->
+    <f:comment>
+        <f:debug title="Object auslesen">{validationResults}</f:debug>
+    </f:comment>
+    <!-- ######################################################################################## -->
+    <f:if condition="{validationResults.flattenedErrors}">
+        <ul>
+            <f:for each="{validationResults.flattenedErrors}" key="propertyName" as="errors">
+                <li>
+                    <f:translate key="positionQuantity"></f:translate>
+                    <ul>
+                        <f:for each="{errors}" as="propertyError">
+                            <li>
+                                <f:translate key="error.{propertyError.code}" arguments="{propertyError.arguments}">
+                                    {propertyError.message} =>{propertyError.code}
+                                </f:translate>
+                            </li>
+                        </f:for>
+                    </ul>
+                </li>
+            </f:for>
+        </ul>
+    </f:if>
+</f:form.validationResults>

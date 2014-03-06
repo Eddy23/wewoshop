@@ -1,0 +1,17 @@
+<f:form.radio property="paymentMethod" value="1" checked="checked"/><f:translate key="tx_wewoshop_domain_model_payment.debit"/><br/>
+<fieldset>
+    <p>
+        <label for="accountNr"><f:translate key="tx_wewoshop_domain_model_payment.debitAccountNumber"/></label>
+        <f:form.textfield id="accountNr" name="accountNr" property="debitAccountNumber" type="text" value=""/>
+    </p>
+    <p>
+        <label for="bankNr"><f:translate key="tx_wewoshop_domain_model_payment.debitBankCode"/></label>
+        <f:form.textfield id="bankNr" name="bankNr" property="debitBankCode" type="text" value=""/>
+    </p>
+    <p>
+        <label for="bankName"><f:translate key="tx_wewoshop_domain_model_payment.debitBankName"/></label>
+        <f:form.textfield id="bankName" name="bankName" property="debitBankName" type="text" value=""/>
+    </p>
+</fieldset><br/>
+<f:form.radio property="paymentMethod" value="2"/><f:translate key="tx_wewoshop_domain_model_payment.account"/><br/><br/>
+<f:form.radio property="paymentMethod" value="3"/><f:translate key="tx_wewoshop_domain_model_payment.prePayment"/><br/><br/>

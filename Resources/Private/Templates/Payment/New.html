@@ -1,0 +1,42 @@
+<f:layout name="Default" />
+
+This template displays a NEW form for the current domain object.
+
+If you modify this template, do not forget to change the overwrite settings
+in /Configuration/ExtensionBuilder/settings.yaml:
+  Resources:
+    Private:
+      Templates:
+        New.html: keep
+
+Otherwise your changes will be overwritten the next time you save the extension in the extension builder
+
+<f:section name="main">
+<h1>Bezahlart auswählen</h1>
+
+<f:flashMessages/>
+<f:form action="create" controller="Payment" enctype="multipart/form-data"  object="newPayment" name="newPayment">
+    <f:form.radio name="paymentMethodId" value="1" checked="checked"/><f:translate key="tx_wewoshop_domain_model_payment.debit"/><br/>
+    <fieldset>
+        <p>
+            <label for="iban"><f:translate key="tx_wewoshop_domain_model_payment.iban"/></label>:
+            <f:form.textfield id="iban" name="iban" type="text" value=""/>
+        </p>
+        <p>
+            <label for="bic"><f:translate key="tx_wewoshop_domain_model_payment.bic"/></label>:
+            <f:form.textfield id="bic" name="bic" type="text" value=""/>
+        </p>
+    </fieldset>
+    <br/>
+    <f:form.radio name="paymentMethodId" value="2" /><f:translate key="tx_wewoshop_domain_model_payment.account"/><br/><br/>
+    <f:form.radio name="paymentMethodId" value="3" /><f:translate key="tx_wewoshop_domain_model_payment.prePayment"/><br/><br/>
+
+
+<!--    <f:render partial="Payment/FormFields" arguments="{newPayment : newPayment}" /> -->
+<!--    <f:render partial="Payment/DeliveryAddress" arguments="{deliveryAddress : deliveryAddress, frontendUser : frontendUser}" /> -->
+<!--    <input type="hidden" name="frontendUser[uid]" value="{frontendUser.uid}"/> -->
+<!--    <input type="hidden" name="frontendUser[uid]" value="{feUserId}"/> -->
+<!--    <input type="hidden" name="frontendUserVerify" value="{feUserObject}"/>  -->
+    <button id="toSummary" type="submit"><f:translate key="toSummary"/></button>
+</f:form>
+</f:section>

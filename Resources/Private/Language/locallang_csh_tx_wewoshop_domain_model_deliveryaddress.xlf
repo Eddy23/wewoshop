@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<xliff version="1.0">
+	<file source-language="en" datatype="plaintext" original="messages" date="2014-01-23T17:24:27Z" product-name="wewoshop">
+		<header/>
+		<body>
+			
+            
+			<trans-unit id="first_name_delivery.description">
+				<source>firstNameDelivery</source>
+			</trans-unit>
+			<trans-unit id="last_name_delivery.description">
+				<source>lastNameDelivery</source>
+			</trans-unit>
+			<trans-unit id="address_delivery.description">
+				<source>addressDelivery</source>
+			</trans-unit>
+			<trans-unit id="zip_delivery.description">
+				<source>zipDelivery</source>
+			</trans-unit>
+			<trans-unit id="city_delivery.description">
+				<source>cityDelivery</source>
+			</trans-unit>
+		</body>
+	</file>
+</xliff>

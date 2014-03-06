@@ -1,0 +1,69 @@
+
+plugin.tx_wewoshop {
+	view {
+		templateRootPath = {$plugin.tx_wewoshop.view.templateRootPath}
+		partialRootPath = {$plugin.tx_wewoshop.view.partialRootPath}
+		layoutRootPath = {$plugin.tx_wewoshop.view.layoutRootPath}
+	}
+	persistence {
+		storagePid = {$plugin.tx_wewoshop.persistence.storagePid}
+	}
+	features {
+		# uncomment the following line to enable the new Property Mapper.
+		# rewrittenPropertyMapper = 1
+	}
+}
+
+plugin.tx_wewoshop._CSS_DEFAULT_STYLE (
+	textarea.f3-form-error {
+		background-color:#FF9F9F;
+		border: 1px #FF0000 solid;
+	}
+
+	input.f3-form-error {
+		background-color:#FF9F9F;
+		border: 1px #FF0000 solid;
+	}
+
+	.tx-wewoshop table {
+		border-collapse:separate;
+		border-spacing:10px;
+	}
+
+	.tx-wewoshop table th {
+		font-weight:bold;
+	}
+
+	.tx-wewoshop table td {
+		vertical-align:top;
+	}
+)
+
+## EXTENSION BUILDER DEFAULTS END TOKEN - Everything BEFORE this line is overwritten with the defaults of the extension builder
+# Einbindung einer CSS-Datei
+page.includeCSS.tx_wewoshop = EXT:wewoshop/Resources/Public/CSS/tx_wewoshop.css
+
+# jQuery-Ajax-Script für Positionsänderungen im Warenkorb
+#page.includeJS.tx_wewoshop_file_1 = EXT:wewoshop/Resources/Public/Scripts/changebasketquantity.js
+page.includeJSFooter.tx_wewoshop_file_1 = EXT:wewoshop/Resources/Public/Scripts/changebasketquantity.js
+
+# Email-Adresse des Shops und FeUserGroupUID
+plugin.tx_wewoshop {
+    settings {
+        emailSender = {$plugin.tx_wewoshop.settings.emailSender}
+        emailIncomingOrders = {$plugin.tx_wewoshop.settings.emailIncomingOrders}
+        emailSubject = {$plugin.tx_wewoshop.settings.emailSubject}
+        emailSubjectShop = {$plugin.tx_wewoshop.settings.emailSubjectShop}
+        feUserGroupUid = {$plugin.tx_wewoshop.settings.feUserGroupUid}
+        feUserPid = {$plugin.tx_wewoshop.settings.feUserPid}
+        agbId = {$plugin.tx_wewoshop.settings.agbId}
+    }
+}
+
+
+# plugin.tx_wewoshop.mvc.callDefaultActionIfActionCantBeResolved = 1
+
+# Zur Entwicklung und Sessiontests ist no_cache aktiviert.
+# In Produktion ist dies zu deaktivieren !!!!
+#plugin.tx_wewoshop.config.no_cache = 1
+

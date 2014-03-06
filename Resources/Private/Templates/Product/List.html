@@ -1,0 +1,68 @@
+<div xmlns:f="http://typo3.org/ns/fluid/ViewHelpers">
+<f:layout name="Default"/>
+
+This Template is responsible for creating a table of domain objects.
+
+If you modify this template, do not forget to change the overwrite settings
+in /Configuration/ExtensionBuilder/settings.yaml:
+  Resources:
+    Private:
+      Templates:
+        List.html: keep
+
+Otherwise your changes will be overwritten the next time you save the extension in the extension builder
+
+<f:section name="main">
+    <f:render partial="orderAlreadyRealized" arguments="{_all}" />
+    <h1>Gesamtproduktübersicht</h1>
+
+
+    <f:flashMessages />
+    <div class="showBasketWidget">
+        <f:render partial="showBasketWidget" arguments="{basketQuantity : basketQuantity, basketValue : basketValue, basketLinks : basketLinks}" />
+    </div>
+      <f:form action="search" name="searchProduct" noCacheHash="true" >
+        <label for="suche">Produktsuche</label><br />
+        <f:form.textfield name="searchBox" /><br />
+        <f:form.submit value="suchen" />
+    </f:form>
+    <br />
+    <!--
+    <f:form action="sortlist" name="productCategory" noCacheHash="true">
+        <label for="suche">Nach Kategorie filtern</label><br />
+        <f:form.select property="categories" options="{categories}" optionValueField="uid" optionLabelField="title" /><br />
+        <f:form.submit value="Filterung starten" />
+    </f:form>
+    <br />
+    -->
+<table  class="tx_wewoshop" >
+	<tr>
+		<th><f:translate key="tx_wewoshop_domain_model_product.title" /></th>
+        <th><f:translate key="tx_wewoshop_domain_model_product.categories" /></th>
+        <th><f:translate key="tx_wewoshop_domain_model_product.size" /></th>
+		<th><f:translate key="tx_wewoshop_domain_model_product.color" /></th>
+        <th><f:translate key="tx_wewoshop_domain_model_product.price"/></th>
+        <th><f:translate key="tx_wewoshop_domain_model_product.product_img_small" /></th>
+	</tr>
+
+	<f:for each="{products}" as="product">
+		<tr>
+			<td><f:link.action action="show" arguments="{product : product}"> {product.productTitle}</f:link.action></td>
+            <td>{product.categories.title}</td>
+            <td>{product.size}</td>
+			<td>{product.color}</td>
+            <td><f:format.currency currencySign="€" decimalSeparator="," thousandsSeparator=".">{product.price}</f:format.currency><br />(inkl. MwSt.)</td>
+            <td><f:link.action action="show" arguments="{product : product}">
+                <f:image src="uploads/tx_wewoshop/{product.productImgSmall}" alt="Testbildklein" maxHeight="100" />
+            </f:link.action></td>
+		</tr>
+	</f:for>
+</table>
+<!-- ######################################################################################## -->
+    <f:comment>
+        <f:debug title="Produktobjekt im Formular list">{products}</f:debug>
+        <f:debug title="Categoriesobjekt im Formular list">{categories}</f:debug>
+    </f:comment>
+<!-- ######################################################################################## -->
+</f:section>
+</div>

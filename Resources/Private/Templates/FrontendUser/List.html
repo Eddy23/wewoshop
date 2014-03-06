@@ -1,0 +1,26 @@
+<div xmlns:f="http://typo3.org/ns/fluid/ViewHelpers">
+<f:layout name="Default" />
+
+This Template is responsible for creating a table of domain objects.
+
+If you modify this template, do not forget to change the overwrite settings
+in /Configuration/ExtensionBuilder/settings.yaml:
+  Resources:
+    Private:
+      Templates:
+        List.html: keep
+
+Otherwise your changes will be overwritten the next time you save the extension in the extension builder
+
+<f:section name="main">
+<h1>Alle Frontenduser in der Tabelle fe_users</h1>
+
+<f:flashMessages />
+<ul>
+    <f:for each="{frontendUsers}" as="frontendUser">
+        <li><f:format.htmlspecialchars>{frontendUser.firstName} {frontendUser.lastName}</f:format.htmlspecialchars></li>
+    </f:for>
+</ul>
+
+</f:section>
+</div>

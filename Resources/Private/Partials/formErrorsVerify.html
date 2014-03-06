@@ -1,0 +1,16 @@
+<f:form.validationResults for="{object}">
+    <f:if condition="{validationResults.flattenedErrors}">
+        <ul>
+            <h3><f:translate key="note"></f:translate></h3>
+            <f:for each="{validationResults.flattenedErrors}" key="propertyName" as="errors">
+                <f:for each="{errors}" as="propertyError">
+                    <li>
+                        <f:translate key="error.{propertyError.code}" arguments="{propertyError.arguments}">
+                            {propertyError.message} =>{propertyError.code}
+                        </f:translate>
+                    </li>
+                </f:for>
+            </f:for>
+        </ul>
+    </f:if>
+</f:form.validationResults>

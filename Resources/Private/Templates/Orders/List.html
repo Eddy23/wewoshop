@@ -1,0 +1,76 @@
+<f:layout name="Default" />
+
+This Template is responsible for creating a table of domain objects.
+
+If you modify this template, do not forget to change the overwrite settings
+in /Configuration/ExtensionBuilder/settings.yaml:
+  Resources:
+    Private:
+      Templates:
+        List.html: keep
+
+Otherwise your changes will be overwritten the next time you save the extension in the extension builder
+
+<f:section name="main">
+<h1>Übersicht der Bestellung</h1>
+
+   <h2>Rechnungsadresse</h2>
+   <p>
+        {userFirstName} {userLastName} <br />
+        {userAddress}<br/>
+        {userZip}&nbsp;{userCity}<br/><br />
+        {userMail} <br/>
+    </p>
+
+
+   <f:if condition="{sessionObjects.0.Bezahlmethode} == 1">
+        gewählte Zahlungsart: <f:translate key="tx_wewoshop_domain_model_payment.debit"/><br />
+       IBAN: {sessionObjects.0.IBAN}<br />
+       BIC: {sessionObjects.0.BIC}<br />
+    </f:if>
+    <f:if condition="{sessionObjects.0.Bezahlmethode} == 2">
+        gewählte Zahlungsart: <f:translate key="tx_wewoshop_domain_model_payment.account"/>
+    </f:if>
+    <f:if condition="{sessionObjects.0.Bezahlmethode} == 3">
+        gewählte Zahlungsart: <f:translate key="tx_wewoshop_domain_model_payment.prePayment"/>
+    </f:if>
+
+
+<h3>Bestellposten:</h3>
+
+<table  class="tx_wewoshop" >
+	<tr>
+        <th>Menge</th>
+        <th>Artikel-Nr.</th>
+        <th>Beschreibung</th>
+        <th>Stückpreis</th>
+        <th>Gesamtpreis</th>
+	</tr>
+
+	<f:for each="{sessionObjects}" as="sessionObject">
+		<tr>
+            <td>{sessionObject.Anzahl}</td>
+			<td>{sessionObject.Produktuid}</td>
+            <td>{sessionObject.Produktname}</td>
+            <td><f:format.currency currencySign="€" decimalSeparator="," thousandsSeparator=".">{sessionObject.Preis}</f:format.currency></td>
+            <td><f:format.currency currencySign="€" decimalSeparator="," thousandsSeparator=".">{sessionObject.Positionsbetrag}</f:format.currency>
+            </td>
+		</tr>
+	</f:for>
+        <tr>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td class="basketsum">Summe:</td>
+            <td class="basketsum">
+                <f:format.currency currencySign="€" decimalSeparator="," thousandsSeparator=".">{totalAmount}</f:format.currency>
+            </td>
+        </tr>
+</table>
+
+<br />
+<f:form action="create" method="post" name="newOrders">
+    <button id="buyNow" type="submit"><f:translate key="buyNow"/></button>
+</f:form>
+
+</f:section>

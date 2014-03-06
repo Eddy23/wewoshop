@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<xliff version="1.0">
+	<file source-language="en" datatype="plaintext" original="messages" date="2014-01-23T17:24:27Z" product-name="wewoshop">
+		<header/>
+		<body>
+			
+            
+			<trans-unit id="order_nr.description">
+				<source>Number of the order</source>
+			</trans-unit>
+			<trans-unit id="order_position_nr.description">
+				<source>Number ot the position of one product in the order</source>
+			</trans-unit>
+			<trans-unit id="order_position_volume.description">
+				<source>Quantity of a single orderposition</source>
+			</trans-unit>
+			<trans-unit id="product_uid.description">
+				<source>UID of the product</source>
+			</trans-unit>
+			<trans-unit id="fe_user_uid.description">
+				<source>UID of the feUser</source>
+			</trans-unit>
+			<trans-unit id="payment_method.description">
+				<source>Number ot the paymentmethod</source>
+			</trans-unit>
+		</body>
+	</file>
+</xliff>

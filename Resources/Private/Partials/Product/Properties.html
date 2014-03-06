@@ -1,0 +1,51 @@
+<html xmlns:f="http://typo3.org/ns/fluid/ViewHelpers">
+<table class="tx-wewoshop" >
+	<tr>
+		<td>
+			<f:translate key="tx_wewoshop_domain_model_product.title" />
+		</td>
+		<td>
+			{product.productTitle}
+		</td>
+	</tr>
+	<tr>
+		<td>
+			<f:translate key="tx_wewoshop_domain_model_product.size" />
+		</td>
+		<td>
+			{product.size}
+		</td>
+	</tr>
+	<tr>
+		<td>
+			<f:translate key="tx_wewoshop_domain_model_product.weight" />
+		</td>
+		<td>
+			{product.weight}
+		</td>
+	</tr>
+	<tr>
+		<td>
+			<f:translate key="tx_wewoshop_domain_model_product.color" />
+		</td>
+		<td>
+			{product.color}
+		</td>
+	</tr>
+    <tr>
+        <td>
+            <f:translate key="tx_wewoshop_domain_model_product.price" />
+        </td>
+        <td>
+            <f:format.currency currencySign="€" decimalSeparator="," thousandsSeparator=".">{product.price}</f:format.currency> (inkl. MwSt.)
+        </td>
+    </tr>
+    <tr>
+        <td>
+            <f:translate key="tx_wewoshop_domain_model_product.product_img_big" />
+        </td>
+        <td>
+            <f:image src="uploads/tx_wewoshop/{product.productImgBig}" alt="Testbildgross" />
+        </td>
+    </tr>
+</table>

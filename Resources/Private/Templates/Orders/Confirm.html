@@ -1,0 +1,19 @@
+<f:layout name="Default" />
+
+This Template is responsible for creating a table of domain objects.
+
+If you modify this template, do not forget to change the overwrite settings
+in /Configuration/ExtensionBuilder/settings.yaml:
+  Resources:
+    Private:
+      Templates:
+        Confirm.html: keep
+
+Otherwise your changes will be overwritten the next time you save the extension in the extension builder
+
+<f:section name="main">
+<h3>Vielen Dank für Ihre Bestellung im Testshop</h3>
+<p>Ihre Bestellung wird bei uns unter der Bestellnummer <b>{orderNumber}</b> geführt.</p>
+<p>Ausserdem erhalten Sie eine Auftragsbestätigung an die von Ihnen genannte E-Mailadresse mit sämtlichen Angaben Ihres Einkaufs.</p>
+<h4>Viele Grüße und bis zum nächsten Mal - Ihr Testshop</h4>
+</f:section>

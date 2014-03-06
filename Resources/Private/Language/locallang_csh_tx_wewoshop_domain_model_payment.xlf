@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<xliff version="1.0">
+	<file source-language="en" datatype="plaintext" original="messages" date="2014-01-23T17:24:27Z" product-name="wewoshop">
+		<header/>
+		<body>
+			
+            
+			<trans-unit id="payment_title.description">
+				<source>paymentTitle</source>
+			</trans-unit>
+			<trans-unit id="payment_method_id.description">
+				<source>ID of the paymentMethod</source>
+			</trans-unit>
+			<trans-unit id="debit_account_number.description">
+				<source>userinput: accountnumber of debit</source>
+			</trans-unit>
+			<trans-unit id="debit_bank_code.description">
+				<source>userinput: bankcode of debit</source>
+			</trans-unit>
+			<trans-unit id="debit_bank_name.description">
+				<source>userinput: bankname of debit</source>
+			</trans-unit>
+			<trans-unit id="iban.description">
+				<source>IBAN</source>
+			</trans-unit>
+			<trans-unit id="bic.description">
+				<source>BIC</source>
+			</trans-unit>
+			<trans-unit id="orders.description">
+				<source>One Paymentmethod can have corresponding orders</source>
+			</trans-unit>
+		</body>
+	</file>
+</xliff>
