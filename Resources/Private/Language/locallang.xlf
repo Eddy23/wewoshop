@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes" ?>
 <xliff version="1.0">
-	<file source-language="en" datatype="plaintext" original="messages" date="2014-01-23T17:24:27Z" product-name="wewoshop">
+	<file source-language="en" datatype="plaintext" original="messages" date="2014-06-13T11:06:45Z" product-name="wewoshop">
 		<header/>
 		<body>
 			
@@ -84,6 +84,12 @@
 			<trans-unit id="tx_wewoshop_domain_model_orders.payment_method">
 				<source>Number ot the paymentmethod</source>
 			</trans-unit>
+			<trans-unit id="tx_wewoshop_domain_model_orders.mandate">
+				<source>has debit mandate</source>
+			</trans-unit>
+			<trans-unit id="tx_wewoshop_domain_model_orders.mandate_reference">
+				<source>has mandateReference</source>
+			</trans-unit>
 			
 			<trans-unit id="tx_wewoshop_domain_model_payment">
 				<source>Payment</source>
@@ -108,6 +114,9 @@
 			</trans-unit>
 			<trans-unit id="tx_wewoshop_domain_model_payment.bic">
 				<source>BIC</source>
+			</trans-unit>
+			<trans-unit id="tx_wewoshop_domain_model_payment.mandate">
+				<source>debit mandate</source>
 			</trans-unit>
 			<trans-unit id="tx_wewoshop_domain_model_payment.orders">
 				<source>One Paymentmethod can have corresponding orders</source>

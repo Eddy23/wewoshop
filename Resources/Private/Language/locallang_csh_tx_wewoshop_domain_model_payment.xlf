@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes" ?>
 <xliff version="1.0">
-	<file source-language="en" datatype="plaintext" original="messages" date="2014-01-23T17:24:27Z" product-name="wewoshop">
+	<file source-language="en" datatype="plaintext" original="messages" date="2014-06-13T11:06:47Z" product-name="wewoshop">
 		<header/>
 		<body>
 			
@@ -25,6 +25,9 @@
 			</trans-unit>
 			<trans-unit id="bic.description">
 				<source>BIC</source>
+			</trans-unit>
+			<trans-unit id="mandate.description">
+				<source>debit mandate</source>
 			</trans-unit>
 			<trans-unit id="orders.description">
 				<source>One Paymentmethod can have corresponding orders</source>

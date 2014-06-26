@@ -16,4 +16,8 @@ Otherwise your changes will be overwritten the next time you save the extension 
 <p>Ihre Bestellung wird bei uns unter der Bestellnummer <b>{orderNumber}</b> geführt.</p>
 <p>Ausserdem erhalten Sie eine Auftragsbestätigung an die von Ihnen genannte E-Mailadresse mit sämtlichen Angaben Ihres Einkaufs.</p>
 <h4>Viele Grüße und bis zum nächsten Mal - Ihr Testshop</h4>
+
+<f:if condition="{downloadLink}">
+    <f:format.html parseFuncTSPath="lib.parseFunc">{downloadLink}</f:format.html>
+</f:if>
 </f:section>

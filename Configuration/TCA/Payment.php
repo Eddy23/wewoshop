@@ -6,10 +6,10 @@ if (!defined ('TYPO3_MODE')) {
 $TCA['tx_wewoshop_domain_model_payment'] = array(
 	'ctrl' => $TCA['tx_wewoshop_domain_model_payment']['ctrl'],
 	'interface' => array(
-		'showRecordFieldList' => 'sys_language_uid, l10n_parent, l10n_diffsource, hidden, payment_title, payment_method_id, debit_account_number, debit_bank_code, debit_bank_name, iban, bic, orders',
+		'showRecordFieldList' => 'sys_language_uid, l10n_parent, l10n_diffsource, hidden, payment_title, payment_method_id, debit_account_number, debit_bank_code, debit_bank_name, iban, bic, mandate, orders',
 	),
 	'types' => array(
-		'1' => array('showitem' => 'sys_language_uid;;;;1-1-1, l10n_parent, l10n_diffsource, hidden;;1, payment_title, payment_method_id, debit_account_number, debit_bank_code, debit_bank_name, iban, bic, orders,--div--;LLL:EXT:cms/locallang_ttc.xlf:tabs.access,starttime, endtime'),
+		'1' => array('showitem' => 'sys_language_uid;;;;1-1-1, l10n_parent, l10n_diffsource, hidden;;1, payment_title, payment_method_id, debit_account_number, debit_bank_code, debit_bank_name, iban, bic, mandate, orders,--div--;LLL:EXT:cms/locallang_ttc.xlf:tabs.access,starttime, endtime'),
 	),
 	'palettes' => array(
 		'1' => array('showitem' => ''),
@@ -158,6 +158,15 @@ $TCA['tx_wewoshop_domain_model_payment'] = array(
 				'type' => 'input',
 				'size' => 30,
 				'eval' => 'trim'
+			),
+		),
+		'mandate' => array(
+			'exclude' => 0,
+			'label' => 'LLL:EXT:wewoshop/Resources/Private/Language/locallang_db.xlf:tx_wewoshop_domain_model_payment.mandate',
+			'config' => array(
+				'type' => 'input',
+				'size' => 4,
+				'eval' => 'int'
 			),
 		),
 		'orders' => array(

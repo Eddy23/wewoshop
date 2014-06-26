@@ -1,7 +1,7 @@
 <?php
 namespace Wewo\Wewoshop\Controller;
-
 use Wewo\Wewoshop\Utility\CalculateOrderAmount;
+use Wewo\Wewoshop\Utility\CreateMandatePdf;
 /***************************************************************
  *  Copyright notice
  *
@@ -210,6 +210,8 @@ class OrdersController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionControlle
             $newOrders->setProductUid($sessionObjects[$sessionKey]['Produktuid']);
             $newOrders->setFeUserUid($sessionObjects[$sessionKey]['Useruid']);
             $newOrders->setPaymentMethod($sessionObjects[$sessionKey]['Bezahlmethode']);
+            $newOrders->setMandate($sessionObjects[$sessionKey]['Mandat']);
+            $newOrders->setMandateReference($sessionObjects[$sessionKey]['Mandatsreferenz']);
             $this->ordersRepository->add($newOrders);
         }
         $this->forward('confirm', NULL, NULL, array('orderNumber' => $orderNr));
@@ -250,6 +252,43 @@ class OrdersController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionControlle
         // Betreffzeile für Auftragseingangsmail ab den Shop aus dem Konstanteneditor holen
         $shopMailSubjectIncomingOrder = $this->settings['emailSubjectShop'];
 
+        // PDF-Mandat erstellen
+        if ($sessionObjects[0]['Bezahlmethode'] == 1) {
+            $sepaPayee = $this->settings['sepaPayee'];
+            $sepaCreditor = $this->settings['sepaCreditor'];
+            $mandateReference = $sessionObjects[0]['Mandatsreferenz'];
+            $bic = $sessionObjects[0]['BIC'];
+            $iban = $sessionObjects[0]['IBAN'];
+            $today = date("d.m.Y");
+
+            // Prüfen, ob Eintrag in Konstanten-Editor existiert
+            if(!$this->settings['directoryToMandate']) {
+                $this->settings['directoryToMandate'] = "Mandate";
+            }
+
+            // Prüfen, ob das entsprechende Verzeichnis physisch existiert
+            $checkDir = PATH_site . 'fileadmin/' . $this->settings['directoryToMandate'];
+            if(!is_dir($checkDir)) {
+                mkdir($checkDir);
+            }
+
+            $mandateFile = $checkDir . '/Lastschrift_Mandat_' . $mandateReference . '.pdf';
+
+            if (DIRECTORY_SEPARATOR == '/'){
+                // Attachmentfile und Downloadlink für Linux Server
+                $attachementFile = '/fileadmin/' . $this->settings['directoryToMandate'] . '/Lastschrift_Mandat_' . $mandateReference . '.pdf';
+                $downloadLink = '<a href = "' . '/fileadmin/' . $this->settings['directoryToMandate'] . '/Lastschrift_Mandat_' . $mandateReference . '.pdf">Ihr Mandat zum Download </a >';
+            } else {
+                // Attachmentfile und Downloadlink für Windows localhost
+                $attachementFile = $GLOBALS['_SERVER']['DOCUMENT_ROOT'] . '/Entwicklung/extdevelop/fileadmin/' . $this->settings['directoryToMandate'] . '/Lastschrift_Mandat_' . $mandateReference . '.pdf';
+                $downloadLink = '<a href = "' . '/Entwicklung/extdevelop/fileadmin/' . $this->settings['directoryToMandate'] . '/Lastschrift_Mandat_' . $mandateReference . '.pdf">Ihr Mandat zum Download </a >';
+            }
+
+            // PDF wird zusammengebaut
+            CreateMandatePdf::createMandate($sepaPayee, $sepaCreditor, $mandateReference, $userName, $GLOBALS['TSFE']->fe_user->user['address'], $GLOBALS['TSFE']->fe_user->user['zip'], $GLOBALS['TSFE']->fe_user->user['city'], $GLOBALS['TSFE']->fe_user->user['email'], $bic, $iban, $today, $this->settings['directoryToMandate']);
+        }
+
+
         //$this->sendTemplateEmail(array('recipient@domain.tld' => 'Recipient Name'), array('sender@domain.tld' => 'Sender Name', 'Email Subject', 'TemplateName', array('someVariable' => 'Foo Bar'));
         // E-Mail an Kunde
         $this->sendTemplateEmail(array($userMail => 'Kunde'),
@@ -261,7 +300,8 @@ class OrdersController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionControlle
                                                         'sessionObjects' => $sessionObjects,
                                                         'totalAmount' => CalculateOrderAmount::addOrderPositionAmounts($sessionObjects),
                                                         'orderDate' => date("d.m.Y"),
-                                                        'userName' => $userName
+                                                        'userName' => $userName,
+                                                        'attachementFile' => $attachementFile
                                                     ));
 
         // E-Mail an Shop Auftragseingang
@@ -274,10 +314,12 @@ class OrdersController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionControlle
                                                         'sessionObjects' => $sessionObjects,
                                                         'totalAmount' => CalculateOrderAmount::addOrderPositionAmounts($sessionObjects),
                                                         'orderDate' => date("d.m.Y"),
-                                                        'userName' => $userName
+                                                        'userName' => $userName,
+                                                        'attachementFile' => $attachementFile
                                                     ));
 
         $this->view->assign('orderNumber', $orderNr);
+        $this->view->assign('downloadLink', $downloadLink);
 
         // Sessiondaten löschen
         $this->objectRepository->cleanUpSession();
@@ -309,6 +351,27 @@ class OrdersController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionControlle
         $message->setTo($recipient)
                         ->setFrom($sender)
                         ->setSubject($subject);
+
+        if(!empty($variables['attachementFile'])) {
+            $attachementFile = $variables['attachementFile'];
+            $message->attach(\Swift_Attachment::fromPath($attachementFile));
+        }
+
+
+/*
+         // Attachments
+        if (count($attachements)) {
+            foreach ($attachements as $file => $name) {
+                if (file_exists($file)) {
+                    if (trim($name)) {
+                        $message->attach(\Swift_Attachment::fromPath($file)->setFilename($name));
+                    } else {
+                        $message->attach(\Swift_Attachment::fromPath($file));
+                    }
+                }
+            }
+        }
+*/
 
         // Plain text example
         //$message->setBody($emailBody, 'text/plain');

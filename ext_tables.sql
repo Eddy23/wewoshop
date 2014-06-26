@@ -196,6 +196,8 @@ CREATE TABLE tx_wewoshop_domain_model_orders (
 	product_uid int(11) DEFAULT '0' NOT NULL,
 	fe_user_uid int(11) DEFAULT '0' NOT NULL,
 	payment_method int(11) DEFAULT '0' NOT NULL,
+	mandate int(11) DEFAULT '0' NOT NULL,
+	mandate_reference int(11) DEFAULT '0' NOT NULL,
 
 
 	tstamp int(11) unsigned DEFAULT '0' NOT NULL,
@@ -245,6 +247,7 @@ CREATE TABLE tx_wewoshop_domain_model_payment (
 	debit_bank_name varchar(255) DEFAULT '' NOT NULL,
 	iban varchar(255) DEFAULT '' NOT NULL,
 	bic varchar(255) DEFAULT '' NOT NULL,
+	mandate int(11) DEFAULT '0' NOT NULL,
 	orders int(11) unsigned DEFAULT '0' NOT NULL,
 
 

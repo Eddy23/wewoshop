@@ -1,6 +1,6 @@
 <?php
 namespace Wewo\Wewoshop\Controller;
-
+use Wewo\Wewoshop\Utility\CreateMandatePdf;
 /***************************************************************
  *  Copyright notice
  *
@@ -23,6 +23,7 @@ namespace Wewo\Wewoshop\Controller;
  *
  *  This copyright notice MUST APPEAR in all copies of the script!
  ***************************************************************/
+
 
 /**
  *
@@ -71,7 +72,6 @@ class ProductController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionControll
         $products = $this->productRepository->findAll();
         $categories = $this->categoryRepository->findAll();
 
-
         //calculate the sum of positionquantity and the value of the basket
         $basketQuantity = 0;
         $basketValue = 0;
@@ -84,6 +84,8 @@ class ProductController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionControll
                     }
                     if ($positionItem == "Preis") {
                         $basketPositionValue = 0;
+                        i . B .
+
                         $basketPositionValue = ($positionValue * $basketPositionQuantity);
                         $basketValue = $basketValue + $basketPositionValue;
                     }
@@ -92,18 +94,18 @@ class ProductController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionControll
         }
 
         // Links im Miniwarenkorb (Wk anzeigen, Wk löschen) nur einblenden, wenn etwas darin liegt
-        if($basketQuantity > 0 && $basketValue > 0) {
+        if ($basketQuantity > 0 && $basketValue > 0) {
             $basketLinks = TRUE;
             $this->view->assign('basketLinks', $basketLinks);
         }
 
         // Wurde direkt nach dem Bestellvorgang F5 gedrückt oder Zurück-/Vor-Buttons benutzt, wird hierher umgeleitet
         // und eine Fehlermeldung/Erklärung ausgegeben
-        if($this->request->hasArgument('errormessage')) {
+        if ($this->request->hasArgument('errormessage')) {
             $this->view->assign('errormessage', TRUE);
         }
 
-		$this->view->assign('products', $products);
+        $this->view->assign('products', $products);
         $this->view->assign('categories', $categories);
         $this->view->assign('basketQuantity', $basketQuantity);
         $this->view->assign('basketValue', $basketValue);

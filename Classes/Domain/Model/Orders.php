@@ -35,6 +35,13 @@ namespace Wewo\Wewoshop\Domain\Model;
 class Orders extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity {
 
 	/**
+	 * has mandate reference
+	 *
+	 * @var integer
+	 */
+	protected $mandateReference = 0;
+
+	/**
 	 * Number of the order
 	 *
 	 * @var integer
@@ -75,6 +82,13 @@ class Orders extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity {
 	 * @var integer
 	 */
 	protected $paymentMethod = 0;
+
+	/**
+	 * has debit mandate
+	 *
+	 * @var integer
+	 */
+	protected $mandate = 0;
 
 	/**
 	 * Returns the orderNr
@@ -188,6 +202,44 @@ class Orders extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity {
 	 */
 	public function setOrderPositionNr($orderPositionNr) {
 		$this->orderPositionNr = $orderPositionNr;
+	}
+
+	/**
+	 * Returns the debit mandate
+	 *
+	 * @return int
+	 */
+	public function getMandate() {
+		return $this->mandate;
+	}
+
+	/**
+	 * Set the debit mandate
+	 *
+	 * @param \integer $mandate
+	 * @return void
+	 */
+	public function setMandate($mandate) {
+		$this->mandate = $mandate;
+	}
+
+	/**
+	 * Returns the mandate reference
+	 *
+	 * @return int
+	 */
+	public function getMandateReference() {
+		        return $this->mandateReference;
+	}
+
+	/**
+	 * Set the mandate reference
+	 *
+	 * @param \integer $mandateReference
+	 * @return void
+	 */
+	public function setMandateReference($mandateReference) {
+		        $this->mandateReference = $mandateReference;
 	}
 
 	/**

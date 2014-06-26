@@ -12,7 +12,7 @@ if (!defined('TYPO3_MODE')) {
 		'FrontendUser' => 'list, show, new, create, edit, update, delete, verifyFeUser, feUserLogin',
 		'FrontendUserVerify' => 'showForm, list, show, new, create, edit, update, delete, verifyFeUser, showPaymentForm',
 		'Orders' => 'list, show, new, create, edit, update, delete, confirm, showPaymentForm, paymentMethodToSession',
-		'Payment' => 'list, show, new, create, edit, update, delete, paymentMethodToSession',
+		'Payment' => 'list, show, new, create, edit, update, delete, paymentMethodToSession, createMandate',
 		
 	),
 	// non-cacheable actions

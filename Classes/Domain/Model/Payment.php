@@ -85,6 +85,13 @@ class Payment extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity {
 	protected $bic = '';
 
 	/**
+	 * debit mandate
+	 *
+	 * @var integer
+	 */
+	protected $mandate = 0;
+
+	/**
 	 * One Paymentmethod can have corresponding orders
 	 *
 	 * @var \TYPO3\CMS\Extbase\Persistence\ObjectStorage<\Wewo\Wewoshop\Domain\Model\Orders>

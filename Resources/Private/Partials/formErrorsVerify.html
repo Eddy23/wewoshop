@@ -6,7 +6,7 @@
                 <f:for each="{errors}" as="propertyError">
                     <li>
                         <f:translate key="error.{propertyError.code}" arguments="{propertyError.arguments}">
-                            {propertyError.message} =>{propertyError.code}
+                            {propertyError.message} => {propertyError.code}
                         </f:translate>
                     </li>
                 </f:for>

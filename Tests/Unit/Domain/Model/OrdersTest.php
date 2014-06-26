@@ -187,4 +187,50 @@ class OrdersTest extends \TYPO3\CMS\Extbase\Tests\Unit\BaseTestCase {
 			$this->subject
 		);
 	}
+
+	/**
+	 * @test
+	 */
+	public function getMandateReturnsInitialValueForInteger() {
+		$this->assertSame(
+			0,
+			$this->subject->getMandate()
+		);
+	}
+
+	/**
+	 * @test
+	 */
+	public function setMandateForIntegerSetsMandate() {
+		$this->subject->setMandate(12);
+
+		$this->assertAttributeEquals(
+			12,
+			'mandate',
+			$this->subject
+		);
+	}
+
+	/**
+	 * @test
+	 */
+	public function getMandateReferenceReturnsInitialValueForInteger() {
+		$this->assertSame(
+			0,
+			$this->subject->getMandateReference()
+		);
+	}
+
+	/**
+	 * @test
+	 */
+	public function setMandateReferenceForIntegerSetsMandateReference() {
+		$this->subject->setMandateReference(12);
+
+		$this->assertAttributeEquals(
+			12,
+			'mandateReference',
+			$this->subject
+		);
+	}
 }

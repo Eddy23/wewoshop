@@ -214,6 +214,29 @@ class PaymentTest extends \TYPO3\CMS\Extbase\Tests\Unit\BaseTestCase {
 	/**
 	 * @test
 	 */
+	public function getMandateReturnsInitialValueForInteger() {
+		$this->assertSame(
+			0,
+			$this->subject->getMandate()
+		);
+	}
+
+	/**
+	 * @test
+	 */
+	public function setMandateForIntegerSetsMandate() {
+		$this->subject->setMandate(12);
+
+		$this->assertAttributeEquals(
+			12,
+			'mandate',
+			$this->subject
+		);
+	}
+
+	/**
+	 * @test
+	 */
 	public function getOrdersReturnsInitialValueForOrders() {
 		$newObjectStorage = new \TYPO3\CMS\Extbase\Persistence\ObjectStorage();
 		$this->assertEquals(

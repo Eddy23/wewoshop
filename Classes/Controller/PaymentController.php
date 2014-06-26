@@ -42,6 +42,14 @@ class PaymentController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionControll
     protected $objectRepository = NULL;
 
     /**
+     * frontendUserRepository
+     *
+     * @var \Wewo\Wewoshop\Domain\Repository\FrontendUserRepository
+     * @inject
+     */
+    protected $frontendUserRepository;
+
+    /**
      * action list
      *
      * @return void
@@ -74,7 +82,7 @@ class PaymentController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionControll
      */
     public function createAction() {
         $args = $this->request->getArguments();
-//        Workaround, d.h. zuerst den Persistance-Manager instanzieren, dann muss alles manuell persistiert werden mit persistAll()
+//        Workaround, d.h. zuerst den Persistance-Manager instanziieren, dann muss alles manuell persistiert werden mit persistAll()
 //        $persistenceManager = \TYPO3\CMS\Core\Utility\GeneralUtility::makeInstance('TYPO3\\CMS\\Extbase\\Persistence\\Generic\\PersistenceManager');
 //        $persistenceManager->persistAll();
         $paymentMethodId = intval($args['paymentMethodId']);
@@ -82,8 +90,40 @@ class PaymentController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionControll
         $paymentBic = $args['bic'];
         $feUserId = intval($GLOBALS['TSFE']->fe_user->user['uid']);
 
-        $this->redirect('paymentMethodToSession', NULL, NULL, array('paymentMethodId' => $paymentMethodId, 'paymentIban' => $paymentIban, 'paymentBic' => $paymentBic, 'feUserId' => $feUserId));
+        If(isset($paymentMethodId) && ($paymentMethodId === 1)) {
+            // Mandatserstellung für das SEPA-Lastschriftverfahren
+            $this->redirect('createMandate', NULL, NULL, array('paymentMethodId' => $paymentMethodId, 'paymentIban' => $paymentIban, 'paymentBic' => $paymentBic, 'feUserId' => $feUserId));
+        } else {
+            // Normale Rechnung bzw.Vorauskasse
+            $this->redirect('paymentMethodToSession', NULL, NULL, array('paymentMethodId' => $paymentMethodId, 'paymentIban' => $paymentIban, 'paymentBic' => $paymentBic, 'feUserId' => $feUserId));
+        }
     }
+
+
+    /**
+     * action createMandate
+     * creates a mandate for the SEPA Direct Debit Scheme
+     *
+     * @param \integer $paymentMethodId
+     * @param \string $paymentIban
+     * @param \string $paymentBic
+     * @param \integer $feUserId
+     *
+     * @return void
+     */
+    public function createMandateAction($paymentMethodId, $paymentIban, $paymentBic, $feUserId) {
+        $frontendUser = $this->frontendUserRepository->findByUid($feUserId);
+        $mandateReference = time();
+        $this->view->assign('paymentIban', $paymentIban);
+        $this->view->assign('paymentBic', $paymentBic);
+        $this->view->assign('paymentMethodId', $paymentMethodId);
+        $this->view->assign('frontendUser', $frontendUser);
+        $this->view->assign('sepaPayee', $this->settings['sepaPayee']);
+        $this->view->assign('sepaCreditor', $this->settings['sepaCreditor']);
+        $this->view->assign('mandateReference', $mandateReference);
+    }
+
+
 
     /**
      * action paymentMethodToSession
@@ -93,15 +133,20 @@ class PaymentController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionControll
      * @param \string $paymentIban
      * @param \string $paymentBic
      * @param \integer $feUserId
+     * @param \integer $confirmMandate
+     * @validate $confirmMandate \Wewo\Wewoshop\Domain\Validator\MandateSetValidator
+     * @param \integer $mandateReference
      * @return void
      */
-    public function paymentMethodToSessionAction($paymentMethodId, $paymentIban = NULL, $paymentBic = NULL, $feUserId) {
+    public function paymentMethodToSessionAction($paymentMethodId = NULL, $paymentIban = NULL, $paymentBic = NULL, $feUserId, $confirmMandate = 0, $mandateReference = NULL) {
         if (isset($paymentMethodId) && ($paymentMethodId > 0)) {
             $sessionObject = $this->objectRepository->findBySession();
             foreach ($sessionObject as $sessionKey => $sessionValue) {
                 $sessionObject[$sessionKey]['Bezahlmethode'] = $paymentMethodId;
                 $sessionObject[$sessionKey]['IBAN'] = $paymentIban;
                 $sessionObject[$sessionKey]['BIC'] = $paymentBic;
+                $sessionObject[$sessionKey]['Mandat'] = $confirmMandate;
+                $sessionObject[$sessionKey]['Mandatsreferenz'] = $mandateReference;
             }
             $this->objectRepository->writeToSession($sessionObject);
 //            $this->redirect('list', 'Orders', NULL, array('frontendUser' => $frontendUser));
@@ -154,7 +199,8 @@ class PaymentController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionControll
      * @api
      */
     protected function getErrorFlashMessage() {
-        return 'Error in the Payment-Controller: An error occurred while trying to call ' . get_class($this) . '->' . $this->actionMethodName . '()';
+        // return 'Error in the Payment-Controller: An error occurred while trying to call ' . get_class($this) . '->' . $this->actionMethodName . '()';
+        return FALSE;
     }
 }
 

@@ -172,7 +172,7 @@ $TCA['tx_wewoshop_domain_model_orders'] = array(
 			'starttime' => 'starttime',
 			'endtime' => 'endtime',
 		),
-		'searchFields' => 'order_nr,order_position_nr,order_position_volume,product_uid,fe_user_uid,payment_method,',
+		'searchFields' => 'order_nr,order_position_nr,order_position_volume,product_uid,fe_user_uid,payment_method,mandate,mandate_reference,',
 		'dynamicConfigFile' => \TYPO3\CMS\Core\Utility\ExtensionManagementUtility::extPath($_EXTKEY) . 'Configuration/TCA/Orders.php',
 		'iconfile' => \TYPO3\CMS\Core\Utility\ExtensionManagementUtility::extRelPath($_EXTKEY) . 'Resources/Public/Icons/tx_wewoshop_domain_model_orders.gif'
 	),
@@ -205,7 +205,7 @@ $TCA['tx_wewoshop_domain_model_payment'] = array(
 			'starttime' => 'starttime',
 			'endtime' => 'endtime',
 		),
-		'searchFields' => 'payment_title,payment_method_id,debit_account_number,debit_bank_code,debit_bank_name,iban,bic,orders,',
+		'searchFields' => 'payment_title,payment_method_id,debit_account_number,debit_bank_code,debit_bank_name,iban,bic,mandate,orders,',
 		'dynamicConfigFile' => \TYPO3\CMS\Core\Utility\ExtensionManagementUtility::extPath($_EXTKEY) . 'Configuration/TCA/Payment.php',
 		'iconfile' => \TYPO3\CMS\Core\Utility\ExtensionManagementUtility::extRelPath($_EXTKEY) . 'Resources/Public/Icons/tx_wewoshop_domain_model_payment.gif'
 	),

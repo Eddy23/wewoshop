@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes" ?>
 <xliff version="1.0">
-	<file source-language="en" datatype="plaintext" original="messages" date="2014-01-23T17:24:27Z" product-name="wewoshop">
+	<file source-language="en" datatype="plaintext" original="messages" date="2014-06-13T11:06:46Z" product-name="wewoshop">
 		<header/>
 		<body>
 			
@@ -88,6 +88,12 @@
 			<trans-unit id="tx_wewoshop_domain_model_orders.payment_method">
 				<source>Payment Method</source>
 			</trans-unit>
+			<trans-unit id="tx_wewoshop_domain_model_orders.mandate">
+				<source>Mandate</source>
+			</trans-unit>
+			<trans-unit id="tx_wewoshop_domain_model_orders.mandate_reference">
+				<source>Mandate Reference</source>
+			</trans-unit>
 			
 			
 			<trans-unit id="tx_wewoshop_domain_model_payment">
@@ -113,6 +119,9 @@
 			</trans-unit>
 			<trans-unit id="tx_wewoshop_domain_model_payment.bic">
 				<source>Bic</source>
+			</trans-unit>
+			<trans-unit id="tx_wewoshop_domain_model_payment.mandate">
+				<source>Mandate</source>
 			</trans-unit>
 			<trans-unit id="tx_wewoshop_domain_model_payment.orders">
 				<source>Orders</source>

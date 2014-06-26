@@ -28,6 +28,12 @@ plugin.tx_wewoshop {
         emailSubject = Ihre Bestellung beim Testshop
         # cat=plugin.tx_wewoshop//pagesettings; type=string; label=E-Mail Betreffzeile - Shop: Betreffzeile in der Auftragseingangsmail an den Shop
         emailSubjectShop = Neue Bestellung beim Testshop
+        # cat=plugin.tx_wewoshop//pagesettings; type=string; label=SEPA - Name des Zahlungsempfängers
+        sepaPayee = Testshop Zahlungsempfänger
+        # cat=plugin.tx_wewoshop//pagesettings; type=string; label=SEPA - Gläubiger-Identifikationsnummer
+        sepaCreditor = DE98ZZZ09999999999
+        # cat=plugin.tx_wewoshop//pagesettings; type=string; label=Verzeichnis fuer Mandate unterhalb fileadmin
+        directoryToMandate = Mandate
         # cat=plugin.tx_wewoshop//pagesettings; type=integer; label=UID der FE-Usergroup
         feUserGroupUid = 0
         # cat=plugin.tx_wewoshop//pagesettings; type=integer; label=UID der FE-User: Storagefolder der FE-User (=PID)

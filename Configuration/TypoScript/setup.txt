@@ -54,6 +54,9 @@ plugin.tx_wewoshop {
         emailIncomingOrders = {$plugin.tx_wewoshop.settings.emailIncomingOrders}
         emailSubject = {$plugin.tx_wewoshop.settings.emailSubject}
         emailSubjectShop = {$plugin.tx_wewoshop.settings.emailSubjectShop}
+        sepaPayee = {$plugin.tx_wewoshop.settings.sepaPayee}
+        sepaCreditor = {$plugin.tx_wewoshop.settings.sepaCreditor}
+        directoryToMandate = {$plugin.tx_wewoshop.settings.directoryToMandate}
         feUserGroupUid = {$plugin.tx_wewoshop.settings.feUserGroupUid}
         feUserPid = {$plugin.tx_wewoshop.settings.feUserPid}
         agbId = {$plugin.tx_wewoshop.settings.agbId}
@@ -66,4 +69,3 @@ plugin.tx_wewoshop {
 # Zur Entwicklung und Sessiontests ist no_cache aktiviert.
 # In Produktion ist dies zu deaktivieren !!!!
 #plugin.tx_wewoshop.config.no_cache = 1
-

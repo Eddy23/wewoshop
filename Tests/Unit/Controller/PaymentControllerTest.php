@@ -245,4 +245,52 @@ class PaymentControllerTest extends \TYPO3\CMS\Extbase\Tests\Unit\BaseTestCase {
 		$this->subject->expects($this->once())->method('redirect')->with('list');
 		$this->subject->deleteAction($payment);
 	}
+
+	/**
+	 * @test
+	 */
+	public function createActionAddsTheGivenPaymentToPaymentRepository() {
+		$payment = new \Wewo\Wewoshop\Domain\Model\Payment();
+
+		$paymentRepository = $this->getMock('Wewo\\Wewoshop\\Domain\\Repository\\PaymentRepository', array('add'), array(), '', FALSE);
+		$paymentRepository->expects($this->once())->method('add')->with($payment);
+		$this->inject($this->subject, 'paymentRepository', $paymentRepository);
+
+		$flashMessageContainer = $this->getMock('TYPO3\\CMS\\Extbase\\Mvc\\Controller\\FlashMessageContainer', array('add'), array(), '', FALSE);
+		$this->inject($this->subject, 'flashMessageContainer', $flashMessageContainer);
+
+		$this->subject->createAction($payment);
+	}
+
+	/**
+	 * @test
+	 */
+	public function createActionAddsMessageToFlashMessageContainer() {
+		$payment = new \Wewo\Wewoshop\Domain\Model\Payment();
+
+		$paymentRepository = $this->getMock('Wewo\\Wewoshop\\Domain\\Repository\\PaymentRepository', array('add'), array(), '', FALSE);
+		$this->inject($this->subject, 'paymentRepository', $paymentRepository);
+
+		$flashMessageContainer = $this->getMock('TYPO3\\CMS\\Extbase\\Mvc\\Controller\\FlashMessageContainer', array('add'), array(), '', FALSE);
+		$flashMessageContainer->expects($this->once())->method('add');
+		$this->inject($this->subject, 'flashMessageContainer', $flashMessageContainer);
+
+		$this->subject->createAction($payment);
+	}
+
+	/**
+	 * @test
+	 */
+	public function createActionRedirectsToListAction() {
+		$payment = new \Wewo\Wewoshop\Domain\Model\Payment();
+
+		$paymentRepository = $this->getMock('Wewo\\Wewoshop\\Domain\\Repository\\PaymentRepository', array('add'), array(), '', FALSE);
+		$this->inject($this->subject, 'paymentRepository', $paymentRepository);
+
+		$flashMessageContainer = $this->getMock('TYPO3\\CMS\\Extbase\\Mvc\\Controller\\FlashMessageContainer', array('add'), array(), '', FALSE);
+		$this->inject($this->subject, 'flashMessageContainer', $flashMessageContainer);
+
+		$this->subject->expects($this->once())->method('redirect')->with('list');
+		$this->subject->createAction($payment);
+	}
 }
