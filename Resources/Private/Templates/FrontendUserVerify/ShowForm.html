@@ -85,9 +85,45 @@
                         <f:form.checkbox property="acceptTerms" value="1" />
                         <f:link.page pageUid="{settings.agbId}"><label for="acceptTermsNew"><f:translate key="acceptTerms"/></label></f:link.page>
                     </p>
-                        <f:form.hidden property="usergroup" value="{settings.feUserGroupUid}" />
-                        <f:form.hidden property="pid" value="{settings.feUserPid}"/>
-                        <f:form.hidden property="username" value="{dummyUserName}"/>
+<!--
+                    <h2>Lieferadresse (falls benötigt)</h2>
+
+                    <p>
+                        <label for="firstNameNewDelivery">
+                            <f:translate key="tx_wewoshop_domain_model_frontenduser.first_name"/>
+                        </label>
+                        <f:form.textfield id="firstNameNewDelivery" property="firstNameDelivery" type="text"
+                                          class="text"/>
+                    </p>
+                    <p>
+                        <label for="lastNameNewDelivery">
+                            <f:translate key="tx_wewoshop_domain_model_frontenduser.last_name"/>
+                        </label>
+                        <f:form.textfield id="lastNameNewDelivery" property="lastNameDelivery" type="text"
+                                          class="text"/>
+                    </p>
+                    <p>
+                        <label for="addressNewDelivery">
+                            <f:translate key="tx_wewoshop_domain_model_frontenduser.address"/>
+                        </label>
+                        <f:form.textfield id="addressNewDelivery" property="addressDelivery" type="text" class="text"/>
+                    </p>
+                    <p>
+                        <label for="zipNewDelivery">
+                            <f:translate key="tx_wewoshop_domain_model_frontenduser.zip"/>
+                        </label>
+                        <f:form.textfield id="zipNewDelivery" property="zipDelivery" type="text" class="text"/>
+                    </p>
+                    <p>
+                        <label for="cityNewDelivery">
+                            <f:translate key="tx_wewoshop_domain_model_frontenduser.city"/>
+                        </label>
+                        <f:form.textfield id="cityNewDelivery" property="cityDelivery" type="text" class="text"/>
+                    </p>
+-->
+                    <f:form.hidden property="usergroup" value="{settings.feUserGroupUid}" />
+                    <f:form.hidden property="pid" value="{settings.feUserPid}"/>
+                    <f:form.hidden property="username" value="{dummyUserName}"/>
                     <p>
                         <button id="registerNew" type="submit">
                             <f:translate key="registerNew"/>

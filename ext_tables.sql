@@ -330,44 +330,10 @@ CREATE TABLE tx_wewoshop_domain_model_deliveryaddress (
 
 );
 
-
-   
-   
-
-   
-   
-
-   
-      
-#
-# Table structure for table 'tx_wewoshop_domain_model_deliveryaddress'
-#
-CREATE TABLE tx_wewoshop_domain_model_deliveryaddress (
-
-	frontenduser  int(11) unsigned DEFAULT '0' NOT NULL,
-
-);
-      
-   
-   
-      
-    
-
-   
-   
-
-   
-   
-
-   
-      
-#
-# Table structure for table 'tx_wewoshop_domain_model_orders'
-#
-CREATE TABLE tx_wewoshop_domain_model_orders (
-
-	payment  int(11) unsigned DEFAULT '0' NOT NULL,
-
-);
-
 ## EXTENSION BUILDER DEFAULTS END TOKEN - Everything BEFORE this line is overwritten with the defaults of the extension builder
+#
+# Extend Table structure for table 'fe_users'
+#
+CREATE TABLE fe_users (
+  tx_wewoshop_acceptTerms tinyint(4) unsigned DEFAULT '0' NOT NULL
+);

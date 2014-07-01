@@ -60,9 +60,7 @@ class FrontendUserController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionCon
      * @return void
      */
     public function verifyFeUserAction(\Wewo\Wewoshop\Domain\Model\FrontendUser $frontendUser) {
-        $testausgabe = "Hallo Testausgabe";
-        $this->view->assign('testausgabe', $testausgabe);
-    }
+     }
 
     /**
 	 * action show

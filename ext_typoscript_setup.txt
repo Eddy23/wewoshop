@@ -2,14 +2,14 @@ config.tx_extbase{
     persistence{
        classes{
             Wewo\Wewoshop\Domain\Model\FrontendUser {
-                mapping {
+               mapping {
                     tableName = fe_users
                     recordType = Tx_Extbase_Domain_Model_FrontendUser
     				columns {
 	    				tx_wewoshop_acceptterms.mapOnProperty = acceptTerms
-	    				tx_wewoshop_accountNr.mapOnProperty = accountNr
-	    				tx_wewoshop_bankNr.mapOnProperty = bankNr
-	    				tx_wewoshop_bankName.mapOnProperty = bankName
+#	    				tx_wewoshop_accountNr.mapOnProperty = accountNr
+#	    				tx_wewoshop_bankNr.mapOnProperty = bankNr
+#	    				tx_wewoshop_bankName.mapOnProperty = bankName
 		    		}
                 }
             }
