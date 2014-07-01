@@ -1,0 +1,56 @@
+<f:layout name="Default" />
+
+This template displays a NEW form for the current domain object.
+
+If you modify this template, do not forget to change the overwrite settings
+in /Configuration/ExtensionBuilder/settings.yaml:
+  Resources:
+    Private:
+      Templates:
+        CreateMandate.html: keep
+
+Otherwise your changes will be overwritten the next time you save the extension in the extension builder
+
+<f:section name="main">
+
+    <f:render partial="formErrorsVerify" arguments="{object}" />
+
+    <h3>Rechnungsadresse</h3>
+    {frontendUser.firstName} {frontendUser.lastName}<br />
+    {frontendUser.address}<br />
+    {frontendUser.zip} {frontendUser.city}
+
+    <h3>SEPA-Lastschrift</h3>
+    <p>Damit wir die SEPA-Lastschrift von Ihrem Konto einziehen können, benötigen wir von Ihnen ein SEPA-Lastschriftsmandat. Das Mandat wird bei uns als PDF zu Ihren Zahldaten hinterlegt.
+        Sie erhalten das Mandat als PDF an die von Ihnen angegeben E-Mail-Adresse.</p>
+
+    <h3>SEPA-Lastschriftsmandat</h3>
+    Zahlungsempfänger: {settings.sepaPayee}<br />
+    Gläubiger-Identifikationsnummer: {settings.sepaCreditor} <br />
+    Mandatsreferenz:{mandateReference} <br />
+
+    <p>Ich ermächtige den Zahlungsempfänger, Zahlungen von meinem Konto mittels Lastschrift einzuziehen. Zugleich weise ich mein Kreditinstitut an, die von dem Zahlungsempfänger
+    auf mein Konto gezogenen Lastschriften einzulösen.</p>
+    <p>Hinweis: Ich kann innerhalb von acht Wochen, beginnend mit dem Belastungsdatum, die Erstattung des belasteten Betrages verlangen. Es gelten dabei die mit meinem Kreditinstitut
+    vereinbarten Bedingungen</p>
+
+    <p>Name des Zahlungspflichtigen: {frontendUser.firstName} {frontendUser.lastName}<br />
+        Straße und Hausnummer: {frontendUser.address}<br/>
+        Postleitzahl, Ort: {frontendUser.zip} {frontendUser.city}<br />
+        E-Mail: {frontendUser.email}<br />
+        Swift BIC: {paymentBic}<br />
+        Bankkontonummer - IBAN: {paymentIban}
+    </p>
+
+    <p>Musterstadt, Datum, {frontendUser.firstName} {frontendUser.lastName}</p>
+
+    <f:form action="paymentMethodToSession" controller="Payment">
+        <f:form.checkbox name="confirmMandate" value="1"/>Ich möchte das Mandat erteilen (elektronische Übermittlung)<br/>
+        <f:form.hidden name="paymentMethodId" value="{paymentMethodId}"/>
+        <f:form.hidden name="paymentIban" value="{paymentIban}"/>
+        <f:form.hidden name="paymentBic" value="{paymentBic}"/>
+        <f:form.hidden name="feUserId" value="{frontendUser.uid}"/>
+        <f:form.hidden name="mandateReference" value="{mandateReference}" />
+        <button id="toSummary" type="submit"><f:translate key="toSummary"/></button>
+    </f:form>
+</f:section>
