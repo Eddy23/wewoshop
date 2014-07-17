@@ -13,15 +13,22 @@ Otherwise your changes will be overwritten the next time you save the extension 
 
 <f:section name="main">
 <h1>Übersicht der Bestellung</h1>
-
    <h2>Rechnungsadresse</h2>
    <p>
-        {userFirstName} {userLastName} <br />
-        {userAddress}<br/>
-        {userZip}&nbsp;{userCity}<br/><br />
-        {userMail} <br/>
+        {feUser.firstName} {feUser.lastName} <br />
+        {feUser.address}<br/>
+        {feUser.zip}&nbsp;{feUser.city}<br/><br />
+        {feUser.email} <br/>
     </p>
 
+    <f:if condition="{currentDeliveryAddress}">
+        <h2>Lieferadresse</h2>
+        <p>
+            {currentDeliveryAddress.firstNameDelivery} {currentDeliveryAddress.lastNameDelivery}<br />
+            {currentDeliveryAddress.addressDelivery}<br />
+            {currentDeliveryAddress.zipDelivery}&nbsp;{currentDeliveryAddress.cityDelivery}<br /><br />
+        </p>
+    </f:if>
 
    <f:if condition="{sessionObjects.0.Bezahlmethode} == 1">
         gewählte Zahlungsart: <f:translate key="tx_wewoshop_domain_model_payment.debit"/><br />

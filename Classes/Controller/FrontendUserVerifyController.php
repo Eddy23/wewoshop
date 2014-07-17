@@ -118,6 +118,7 @@ class FrontendUserVerifyController extends \TYPO3\CMS\Extbase\Mvc\Controller\Act
         $feUserObject = $this->frontendUserVerifyRepository->findOneByEmail($propertyEmail);
         if(isset($feUserObject)) {
             // ...und salted Passwort aus Repository/Tabelle auslesen
+            // TODO: Falls ein User mehrere Anmeldungen mit der gleichen Email-Adresse gemacht hat, evtl. checken
             $feUserPassword = $feUserObject->getPassword();
 
             // Prüfen, ob eingegebenes Passwort und salted Passwort aus Repository übereinstimmen

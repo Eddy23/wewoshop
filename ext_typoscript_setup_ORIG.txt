@@ -8,6 +8,9 @@ config.tx_extbase{
     				columns {
 	    				tx_wewoshop_acceptterms.mapOnProperty = acceptTerms
 	    				tx_wewoshop_deliveryAddresses.mapOnProperty = deliveryAddresses
+#	    				tx_wewoshop_accountNr.mapOnProperty = accountNr
+#	    				tx_wewoshop_bankNr.mapOnProperty = bankNr
+#	    				tx_wewoshop_bankName.mapOnProperty = bankName
 		    		}
                 }
             }

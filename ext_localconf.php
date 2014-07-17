@@ -9,18 +9,20 @@ if (!defined('TYPO3_MODE')) {
 	array(
 		'Product' => 'list, sortList, saveInSession, search, show, new, create, edit, update, delete, storeObjectIntoSession, restoreObjectFromSession, deleteSession, changeBasketQuantity, deleteBasketPosition',
 		'Category' => 'list, show, new, create, edit, update, delete',
-		'FrontendUser' => 'list, show, new, create, edit, update, delete, verifyFeUser, feUserLogin',
+		'FrontendUser' => 'list, show, new, create, edit, update, delete, verifyFeUser, feUserLogin, createDelivery',
 		'FrontendUserVerify' => 'showForm, list, show, new, create, edit, update, delete, verifyFeUser, showPaymentForm',
-		'Orders' => 'list, show, new, create, edit, update, delete, confirm, showPaymentForm, paymentMethodToSession',
+		'Orders' => 'list, show, new, create, edit, update, delete, confirm, showPaymentForm, paymentMethodToSession ',
 		'Payment' => 'list, show, new, create, edit, update, delete, paymentMethodToSession, createMandate',
+        'DeliveryAddress' => 'list, show, new, create',
 		
 	),
 	// non-cacheable actions
 	array(
 		'Product' => 'create, update, delete, search, storeObjectIntoSession, restoreObjectFromSession, deleteSession, changeBasketQuantity, deleteBasketPosition',
 		'Category' => 'create, update, delete',
-		'FrontendUser' => 'list, show, new, create, edit, update, delete, verifyFeUser',
+		'FrontendUser' => 'list, show, new, create, edit, update, delete, verifyFeUser, createDelivery',
 		'FrontendUserVerify' => 'list, show, new, create, edit, update, delete, verifyFeUser',
+        'DeliveryAddress' => 'list, show, new, create',
 		
 	)
 );

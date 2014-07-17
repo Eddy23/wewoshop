@@ -335,5 +335,6 @@ CREATE TABLE tx_wewoshop_domain_model_deliveryaddress (
 # Extend Table structure for table 'fe_users'
 #
 CREATE TABLE fe_users (
-  tx_wewoshop_acceptTerms tinyint(4) unsigned DEFAULT '0' NOT NULL
+  tx_wewoshop_acceptTerms tinyint(4) unsigned DEFAULT '0' NOT NULL,
+  tx_wewoshop_deliveryAddresses int(11) unsigned DEFAULT '0' NOT NULL
 );

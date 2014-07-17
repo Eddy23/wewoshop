@@ -68,6 +68,16 @@ class OrdersController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionControlle
      */
     protected $frontendUserRepository;
 
+
+    /**
+     * The Model DeliverAddress
+     *
+     * @var \Wewo\Wewoshop\Domain\Model\DeliveryAddress
+     * @inject
+     */
+    protected $deliveryAddress;
+
+
 	/**
 	 * action list
      *
@@ -76,36 +86,26 @@ class OrdersController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionControlle
 	 */
 	public function listAction($feUserId) {
         $frontendUser = $this->frontendUserRepository->findByUid($feUserId);
-
-        $userFirstName = $frontendUser->getFirstName();
-        $userLastName = $frontendUser->getLastName();
-        $userMail = $frontendUser->getEmail();
-        $userAddress = $frontendUser->getAddress();
-        $userZip = $frontendUser->getZip();
-        $userCity = $frontendUser->getCity();
-
-        $userFirstName = $GLOBALS['TSFE']->fe_user->user['first_name'];
-        $userLastName = $GLOBALS['TSFE']->fe_user->user['last_name'];
-        $userMail = $GLOBALS['TSFE']->fe_user->user['email'];
-        $userAddress = $GLOBALS['TSFE']->fe_user->user['address'];
-        $userZip = $GLOBALS['TSFE']->fe_user->user['zip'];
-        $userCity = $GLOBALS['TSFE']->fe_user->user['city'];
-
         $sessionObjects = $this->objectRepository->findBySession();
 
-        $this->view->assign('userFirstName', $userFirstName);
-        $this->view->assign('userLastName', $userLastName);
-        $this->view->assign('userMail', $userMail);
-        $this->view->assign('userAddress', $userAddress);
-        $this->view->assign('userZip', $userZip);
-        $this->view->assign('userCity', $userCity);
+            $currentDeliveryAddress = $frontendUser->getDeliveryAddresses();
+            $currentDeliveryAddress = $currentDeliveryAddress->current();
+            if($currentDeliveryAddress !== NULL) {
+                // Nun zwei alternative Möglichkeiten
+                // Entweder hier im Controller die einzelnen DeliveryAddress Properties  ermitteln und einzeln zuweisen, z.B. den firstNameDelivery:
+                // $currentFirstName = $currentDeliveryAddress->getFirstNameDelivery
+                // oder besser die Zuweisung erst in Fluid machen, d.h. hier $currentDeliveryAddress komplett übergeben und in Fluid über die Punktnotation zugreifen:
+                $this->view->assign('currentDeliveryAddress', $currentDeliveryAddress);
+            }
+
+
+        $this->view->assign('feUser', $frontendUser);
         $this->view->assign('sessionObjects', $sessionObjects);
         $this->view->assign('totalAmount', CalculateOrderAmount::addOrderPositionAmounts($sessionObjects));
-        //$this->view->assign('payment', $payment);
-        //$this->view->assign('payment', 1);
     }
 
-	/**
+
+    /**
 	 * action show
 	 *
 	 * @param \Wewo\Wewoshop\Domain\Model\Orders $orders
@@ -318,8 +318,8 @@ class OrdersController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionControlle
                                                         'attachementFile' => $attachementFile
                                                     ));
 
-        $this->view->assign('orderNumber', $orderNr);
-        $this->view->assign('downloadLink', $downloadLink);
+       $this->view->assign('orderNumber', $orderNr);
+       $this->view->assign('downloadLink', $downloadLink);
 
         // Sessiondaten löschen
         $this->objectRepository->cleanUpSession();
@@ -418,6 +418,5 @@ class OrdersController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionControlle
 		$this->flashMessageContainer->add('Your Orders was removed.');
 		$this->redirect('list');
 	}
-
 }
 ?>

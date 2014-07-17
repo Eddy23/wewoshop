@@ -42,6 +42,24 @@ class FrontendUserController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionCon
 	protected $frontendUserRepository;
 
 
+    /**
+     * deliveryAddressRepository
+     *
+     * @var \Wewo\Wewoshop\Domain\Repository\DeliveryAddressRepository
+     * @inject
+     */
+    protected $deliveryAddressRepository;
+
+
+    /**
+     * The Model DeliverAddress
+     *
+     * @var \Wewo\Wewoshop\Domain\Model\DeliveryAddress
+     * @inject
+     */
+    protected $deliveryAddress;
+
+
 	/**
 	 * action list
 	 *
@@ -84,28 +102,39 @@ class FrontendUserController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionCon
 	}
 
 
-	/**
+    /**
 	 * action create
      *
      * @param \Wewo\Wewoshop\Domain\Model\FrontendUser $frontendUser
 	 * @return void
 	 */
-	public function createAction(\Wewo\Wewoshop\Domain\Model\FrontendUser $frontendUser) {
-        $table = 'fe_users';
+	public function createAction(\Wewo\Wewoshop\Domain\Model\FrontendUser $frontendUser ) {
+        $tableFeuser = 'fe_users';
 
-        $firstName = $GLOBALS['TYPO3_DB']->quoteStr(strip_tags($frontendUser->getFirstName()), $table);
-        $lastName = $GLOBALS['TYPO3_DB']->quoteStr(strip_tags($frontendUser->getLastName()), $table);
-        $address = $GLOBALS['TYPO3_DB']->quoteStr(strip_tags($frontendUser->getAddress()), $table);
-        $zip = $GLOBALS['TYPO3_DB']->quoteStr(strip_tags($frontendUser->getZip()), $table);
-        $city = $GLOBALS['TYPO3_DB']->quoteStr(strip_tags($frontendUser->getCity()), $table);
-        $email = $GLOBALS['TYPO3_DB']->quoteStr(strip_tags($frontendUser->getEmail()), $table);
-        $password = $GLOBALS['TYPO3_DB']->quoteStr(strip_tags($frontendUser->getPassword()), $table);
-        $confirmationPassword = $GLOBALS['TYPO3_DB']->quoteStr(strip_tags($frontendUser->getConfirmationPassword()), $table);
+        $firstName = $GLOBALS['TYPO3_DB']->quoteStr(strip_tags($frontendUser->getFirstName()), $tableFeuser);
+        $lastName = $GLOBALS['TYPO3_DB']->quoteStr(strip_tags($frontendUser->getLastName()), $tableFeuser);
+        $address = $GLOBALS['TYPO3_DB']->quoteStr(strip_tags($frontendUser->getAddress()), $tableFeuser);
+        $zip = $GLOBALS['TYPO3_DB']->quoteStr(strip_tags($frontendUser->getZip()), $tableFeuser);
+        $city = $GLOBALS['TYPO3_DB']->quoteStr(strip_tags($frontendUser->getCity()), $tableFeuser);
+        $email = $GLOBALS['TYPO3_DB']->quoteStr(strip_tags($frontendUser->getEmail()), $tableFeuser);
+        $password = $GLOBALS['TYPO3_DB']->quoteStr(strip_tags($frontendUser->getPassword()), $tableFeuser);
+        $confirmationPassword = $GLOBALS['TYPO3_DB']->quoteStr(strip_tags($frontendUser->getConfirmationPassword()), $tableFeuser);
 
-        // Generate Salted Password
+         // Generate Salted Password
         $objSalt = \TYPO3\CMS\Saltedpasswords\Salt\SaltFactory::getSaltingInstance(NULL);
         if (is_object($objSalt)) {
             $password = $objSalt->getHashedPassword($password);
+        }
+
+
+        $deliveryArgs = $this->request->getArguments();
+        if((isset($deliveryArgs['firstNameDelivery']) && !empty($deliveryArgs['firstNameDelivery'])) && (isset($deliveryArgs['lastNameDelivery']) && !empty($deliveryArgs['lastNameDelivery']))) {
+            $this->deliveryAddress->setFirstNameDelivery($deliveryArgs['firstNameDelivery']);
+            $this->deliveryAddress->setLastNameDelivery($deliveryArgs['lastNameDelivery']);
+            $this->deliveryAddress->setAddressDelivery($deliveryArgs['addressDelivery']);
+            $this->deliveryAddress->setZipDelivery($deliveryArgs['zipDelivery']);
+            $this->deliveryAddress->setCityDelivery($deliveryArgs['cityDelivery']);
+            $frontendUser->addDeliveryAddress($this->deliveryAddress);
         }
 
         $frontendUser->setFirstName($firstName);
@@ -116,22 +145,74 @@ class FrontendUserController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionCon
         $frontendUser->setEmail($email);
         $frontendUser->setPassword($password);
         $frontendUser->setConfirmationPassword($confirmationPassword);
-
      	$this->frontendUserRepository->add($frontendUser);
+
+
+
+
+
+        // Falls Lieferadresse angegeben wurde
+//        if($deliveryAddress !== NULL) {
+//            $tableDeliveryAddress = 'tx_wewoshop_domain_model_deliveryaddress';
+//            $firstNameDelivery = $GLOBALS['TYPO3_DB']->quoteStr(strip_tags($deliveryAddress->getFirstNameDelivery()), $tableDeliveryAddress);
+//            $lastNameDelivery = $GLOBALS['TYPO3_DB']->quoteStr(strip_tags($deliveryAddress->getLastNameDelivery()), $tableDeliveryAddress);
+//            $addressDelivery = $GLOBALS['TYPO3_DB']->quoteStr(strip_tags($deliveryAddress->getAddressDelivery()), $tableDeliveryAddress);
+//            $zipDelivery = $GLOBALS['TYPO3_DB']->quoteStr(strip_tags($deliveryAddress->getZipDelivery()), $tableDeliveryAddress);
+//            $cityDelivery = $GLOBALS['TYPO3_DB']->quoteStr(strip_tags($deliveryAddress->getCityDelivery()), $tableDeliveryAddress);
+
+//            $deliveryAddress->setFirstNameDelivery($firstNameDelivery);
+//            $deliveryAddress->setLastNameDelivery($lastNameDelivery);
+//            $deliveryAddress->setAddressNameDelivery($addressDelivery);
+//            $deliveryAddress->setZipDelivery($zipDelivery);
+//            $deliveryAddress->setCityDelivery($cityDelivery);
+//
+//            $this->deliveryAddressRepository->add($deliveryAddress);
+//        }
 
         // Erstelle ein Orderobjekt als Elterninstanz. Erst wenn Elterninstanz exisitert, können die Kindobjekte "eingehängt" werden (bei entsprechender Relation).
         // $newOrder = \TYPO3\CMS\Core\Utility\GeneralUtility::makeInstance('Wewo\\Wewoshop\\Domain\\Model\\Orders');
 
+
+
         // Ein add() in das Repository führt noch nicht alleine zu einer Persistierung
         // Es muss zusätzlich noch eine Persistenzmanager-Instanz erstellt werden und persistAll() aufrufen
+        // Erst nach persistAll() erhält der FrontendUser die uid
         // Alternative: Anstatt forward redirect verwenden: Dies löst einen neuen Dispatch aus und Persistencemanager wird nicht benötigt
         $persistenceManager = \TYPO3\CMS\Core\Utility\GeneralUtility::makeInstance('TYPO3\\CMS\\Extbase\\Persistence\\Generic\\PersistenceManager');
         $persistenceManager->persistAll();
+
+//        $deliveryArgs = $this->request->getArguments();
+//        if(isset($deliveryArgs)) {
+//            $this->forward('createDelivery', NULL, NULL, array('deliveryArgs' => $deliveryArgs));
+//        }
 
 //        $this->redirect('showPaymentForm', 'Orders', NULL, array('frontendUser' => $frontendUser, 'newOrder' => $newOrder));
 //        $this->forward('new', 'Payment', NULL, array('frontendUser' => $frontendUser));
         $this->forward('feUserLogin', 'FrontendUser', NULL, array('propertyUserName' => $frontendUser->getUserName(), 'feUserPassword' => $password, 'frontendUser' => $frontendUser));
 	}
+
+    /**
+     * create a deliveryAddress dataset
+     *
+     * @param array $deliveryArgs
+     * @return void
+     */
+    public function createDeliveryAction($deliveryArgs) {
+        $firstNameDelivery = $deliveryArgs['firstNameDelivery'];
+        $lastNameDelivery = $deliveryArgs['lastNameDelivery'];
+        $addressDelivery = $deliveryArgs['addressDelivery'];
+        $zipDelivery = $deliveryArgs['zipDelivery'];
+        $cityDelivery = $deliveryArgs['cityDelivery'];
+
+        $newDelivery = \TYPO3\CMS\Core\Utility\GeneralUtility::makeInstance('Wewo\\Wewoshop\\Domain\\Model\\DeliveryAddress');
+
+        $newDelivery->setFirstNameDelivery($firstNameDelivery);
+        $newDelivery->setLastNameDelivery($lastNameDelivery);
+        $newDelivery->setAddressDelivery($addressDelivery);
+        $newDelivery->setZipDelivery($zipDelivery);
+        $newDelivery->setCityDelivery($cityDelivery);
+        return $newDelivery;
+    }
 
 
     /**

@@ -47,7 +47,7 @@ page.includeCSS.tx_wewoshop = EXT:wewoshop/Resources/Public/CSS/tx_wewoshop.css
 #page.includeJS.tx_wewoshop_file_1 = EXT:wewoshop/Resources/Public/Scripts/changebasketquantity.js
 page.includeJSFooter.tx_wewoshop_file_1 = EXT:wewoshop/Resources/Public/Scripts/changebasketquantity.js
 
-# Email-Adresse des Shops und FeUserGroupUID
+# Diverse Settings
 plugin.tx_wewoshop {
     settings {
         emailSender = {$plugin.tx_wewoshop.settings.emailSender}
@@ -62,7 +62,6 @@ plugin.tx_wewoshop {
         agbId = {$plugin.tx_wewoshop.settings.agbId}
     }
 }
-
 
 # plugin.tx_wewoshop.mvc.callDefaultActionIfActionCantBeResolved = 1
 
