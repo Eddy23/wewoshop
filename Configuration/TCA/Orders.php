@@ -174,7 +174,16 @@ $TCA['tx_wewoshop_domain_model_orders'] = array(
 				'type' => 'passthrough',
 			),
 		),
-	),
+        'crdate' => array(
+            'exclude' => 1,
+            'label' => 'Creation date',
+            'config' => array(
+                    'type' => 'none',
+                    'format' => 'datetime',
+                    'eval' => 'datetime',
+            )
+        ),
+    ),
 );
 
 

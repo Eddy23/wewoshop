@@ -245,37 +245,22 @@ $TCA['tx_wewoshop_domain_model_deliveryaddress'] = array(
 );
 	
 
-
-
-	
-	
-	
-
-	
-	
-	
-
-	
-	
-	
-
-	
-	
-	
-
-	
-	
-	
-
-	
-	
-	
-
-	
-	
-	
-
-
+if (TYPO3_MODE === 'BE') {
+    \TYPO3\CMS\Extbase\Utility\ExtensionUtility::registerModule(
+        'Wewo.' . $_EXTKEY,
+        'tools',
+        'ShowOrders',
+        'top',
+        array(
+          'Orders'  => 'listBe,deleteBe,editBe '
+        ),
+        array(
+            'access' => 'admin',
+            'icon' => 'EXT:' . $_EXTKEY . '/ext_icon.gif',
+            'labels' => 'LLL:EXT:' . $_EXTKEY . '/Resources/Private/Language/locallang_mod.xlf'
+        )
+    );
+}
 
 ## EXTENSION BUILDER DEFAULTS END TOKEN - Everything BEFORE this line is overwritten with the defaults of the extension builder
 ?>

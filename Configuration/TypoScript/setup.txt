@@ -63,6 +63,10 @@ plugin.tx_wewoshop {
     }
 }
 
+# Plugin-Konfiguration von Frontend auf BE-Module kopieren
+module.tx_wewoshop < plugin.tx_wewoshop
+
+
 # plugin.tx_wewoshop.mvc.callDefaultActionIfActionCantBeResolved = 1
 
 # Zur Entwicklung und Sessiontests ist no_cache aktiviert.

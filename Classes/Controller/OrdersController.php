@@ -418,5 +418,37 @@ class OrdersController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionControlle
 		$this->flashMessageContainer->add('Your Orders was removed.');
 		$this->redirect('list');
 	}
+
+    /**
+     * action initializeListBe
+     *
+     */
+    public function initializeListBeAction() {
+        $querySettings = $this->objectManager->get('TYPO3\\CMS\\Extbase\\Persistence\\Generic\\Typo3QuerySettings');
+        $querySettings->setRespectStoragePage(FALSE);
+        $querySettings->setRespectEnableFields(FALSE);
+        $this->ordersRepository->setDefaultQuerySettings($querySettings);
+    }
+
+    /**
+     * list all orders in the Backend Modul
+     *
+     */
+    public function listBeAction() {
+        $this->view->assign('allOrders', $this->ordersRepository->findOpenPurchaseOrder());
+        $this->view->assign('finishedOrders', $this->ordersRepository->findFinishedPurchaseOrder());
+    }
+
+
+    /**
+     * deletes one order in the Backend Modul
+     *
+     * @param \Wewo\Wewoshop\Domain\Model\Orders $orders
+     * @return void
+     */
+    public function deleteBeAction(\Wewo\Wewoshop\Domain\Model\Orders $orders) {
+        $this->ordersRepository->remove($orders);
+        $this->redirect('listBe');
+    }
 }
 ?>

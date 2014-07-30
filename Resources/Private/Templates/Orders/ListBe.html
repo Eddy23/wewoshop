@@ -1,0 +1,60 @@
+<f:be.container>
+    <div class="typo3-fullDoc">
+        <div class="typo3-docheader-functions">
+            <div class="left">
+                <f:be.buttons.csh field="delete" />
+                <div>
+                    <f:be.menus.actionMenu>
+                        <f:be.menus.actionMenuItem label="Bestellungen" controller="Orders" action="listBe" />
+                        <f:be.menus.actionMenuItem label="Test" controller="Orders" action="testBe"/>
+                    </f:be.menus.actionMenu>
+                </div>
+                <f:render section="button-toolbar" optional="true" />
+            </div>
+            <div class="right">
+            </div>
+        </div>
+        <div class="typo3-docheader-buttons">
+            <div class="left">
+            </div>
+            <div class="right">
+                <f:be.buttons.shortcut />
+            </div>
+        </div>
+        <div id="typo3-docbody">
+            <div id="typo3-inner-docbody">
+                <h1>Bestellpositionen</h1>
+                <h2>Offene Bestellungen</h2>
+                <f:if condition="{allOrders}">
+                    <ul>
+                        <f:for each="{allOrders}" as="orders">
+                            <f:if condition="{orders.orderPositionNr} == 1">
+                                <br /><h4>Bestellnummer: {orders.orderNr}</h4>
+                                <li>Kunden-UID {orders.feUserUid}</li>
+                                <li>Bestelldatum: <f:format.date format="d.m.Y">{orders.crdate}</f:format.date></li>
+                            </f:if>
+                            <li>
+                                <f:link.action controller="Orders" action="deleteBe" arguments="{orders:orders}">
+                                Pos {orders.orderPositionNr}: Produkt UID: {orders.productUid}, Anzahl: {orders.orderPositionVolume}, Bezahlmethode: {orders.paymentMethod}
+                                </f:link.action>
+                            </li>
+                        </f:for>
+                    </ul>
+                </f:if>
+                <h1>Erledigte Bestellungen</h1>
+                <f:if condition="{finishedOrders}">
+                    <ul>
+                        <f:for each="{finishedOrders}" as="finishedOrder">
+                            <f:if condition="{finishedOrder.orderPositionNr} == 1">
+                                <br/><h4>Bestellnummer: {finishedOrder.orderNr}</h4>
+                                <li>Kunden-UID {finishedOrder.feUserUid}</li>
+                                <li>Bestelldatum:<f:format.date format="d.m.Y">{finishedOrder.crdate}</f:format.date></li>
+                                <li> Pos {finishedOrder.orderPositionNr}: Produkt UID: {finishedOrder.productUid}, Anzahl: {finishedOrder.orderPositionVolume}, Bezahlmethode: {finishedOrder.paymentMethod}</li>
+                            </f:if>
+                        </f:for>
+                    </ul>
+                </f:if>
+            </div>
+        </div>
+    </div>
+</f:be.container>

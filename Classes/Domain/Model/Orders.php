@@ -90,7 +90,15 @@ class Orders extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity {
 	 */
 	protected $mandate = 0;
 
-	/**
+    /**
+     * Creation date of the order
+     *
+     * @var \DateTime
+     */
+    protected $crdate;
+
+
+    /**
 	 * Returns the orderNr
 	 *
 	 * @return \integer $orderNr
@@ -242,7 +250,30 @@ class Orders extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity {
 		        $this->mandateReference = $mandateReference;
 	}
 
-	/**
+
+
+    /**
+     * Returns the create date
+     *
+     * @return \DateTime
+     */
+    public function getCrdate() {
+        return $this->crdate;
+    }
+
+
+    /**
+     * Set the create date
+     *
+     * @param \DateTime $crdate
+     * @return void
+     */
+    public function setCrdate($crdate) {
+        $this->crdate = $crdate;
+    }
+
+
+    /**
 	 * __construct
 	 *
 	 * @return Orders
