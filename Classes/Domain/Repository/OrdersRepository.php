@@ -56,5 +56,34 @@ class OrdersRepository extends \TYPO3\CMS\Extbase\Persistence\Repository {
 		        }
 	}
 
+
+    /**
+     * Search the table orders for all open purchase orders
+     * That means: tablefield "deleted" is 0
+     *
+     * @return object The matching object if found, otherwise NULL
+     */
+    public function findOpenPurchaseOrder() {
+        $query = $this->createQuery();
+        $query->statement('SELECT * FROM tx_wewoshop_domain_model_orders WHERE deleted=0');
+        $object = $query->execute();
+        return $object;
+    }
+
+
+    /**
+     * Search the table orders for all finished purchase orders
+     * That means: tablefield "deleted" is 1
+     *
+     * @return resultObject The matching object if found, otherwise NULL
+     */
+    public function findFinishedPurchaseOrder() {
+        $query = $this->createQuery();
+        $query->statement('SELECT * FROM tx_wewoshop_domain_model_orders WHERE deleted=1');
+        $resultObject = $query->execute();
+        return $resultObject;
+    }
+
+
 }
 ?>
